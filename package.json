@@ -1,0 +1,34 @@
+{
+  "name": "trabalho-bd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -w src --exec \"babel-node src --presets env\"",
+    "build": "rimraf dist && babel src -s -D -d dist --presets env",
+    "start": "node dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avillasilva/trabalho-bd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avillasilva/trabalho-bd/issues"
+  },
+  "homepage": "https://github.com/avillasilva/trabalho-bd#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^2.0.6",
+    "regenerator-runtime": "^0.13.7",
+    "rimraf": "^3.0.2"
+  }
+}
