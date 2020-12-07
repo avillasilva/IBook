@@ -10,6 +10,8 @@ CREATE TABLE IF NOT EXISTS emprestimo (
 );
 
 CREATE TABLE IF NOT EXISTS emprestimo_livro (
+  	num_emprestimo INTEGER NOT NULL,
+    codigo_livro INTEGER NOT NULL,
     FOREIGN KEY (num_emprestimo) REFERENCES emprestimo (num_emprestimo),
     FOREIGN KEY (codigo_livro) REFERENCES livro (codigo_livro)
 );
@@ -41,7 +43,7 @@ CREATE TABLE IF NOT EXISTS cliente (
     telefone_1 VARCHAR(11) NOT NULL,
     telefone_2 VARCHAR(11) NOT NULL,
     cpf VARCHAR(11),
-    cnpj VARCHAR(11),
+    cnpj VARCHAR(14),
     PRIMARY KEY (codigo_cliente)
 );
 
@@ -52,6 +54,6 @@ CREATE TABLE IF NOT EXISTS endereco (
     cep VARCHAR(8) NOT NULL,
     bairro VARCHAR(50) NOT NULL,
     cidade VARCHAR(50) NOT NULL,
-    estado VARCHAR(30) NOT NULL
+    estado VARCHAR(30) NOT NULL,
     FOREIGN KEY (codigo_cliente) REFERENCES cliente (codigo_cliente)
 );
