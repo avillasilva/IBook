@@ -53,11 +53,11 @@ header {
 #nav-bar #menu li {
   padding: 2rem;
   border-radius: 1rem;
+  transition: ease 1s;
 }
 
 #nav-bar #menu li:hover {
   background-color: #f04234;
-  transition: ease 1s;
 }
 
 #nav-bar #brand img {
