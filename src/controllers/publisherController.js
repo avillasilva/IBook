@@ -3,63 +3,63 @@ import { pool } from '../config/db'
 
 export async function registerPublisher(req, res) {
     try {
-        const { nome, telefone_1, cpf, cnpj } = req.body
-        const cliente = await pool.query(
-            'INSERT INTO cliente (nome, telefone_1, cpf, cnpj) VALUES($1, $2, $3, $4) RETURNING *;', [
-                nome, telefone_1, cpf, cnpj
+        const { nome } = req.body
+        const editora = await pool.query(
+            'INSERT INTO editora (nome) VALUES($1) RETURNING *;', [
+                nome
             ])
-        res.json(cliente.rows[0])
+        res.json(editora.rows[0])
     } catch (err) {
         console.log(err.message)
     }
 }
 
-export async function getClient(req, res) {
+export async function getPublisher(req, res) {
     try {
-        const codigo_cliente = req.params.codigo_cliente
-        const cliente = await pool.query(
-            'SELECT (nome, telefone_1, telefone_2, cpf, cnpj) FROM cliente WHERE cliente.codigo_cliente = $1;', [
-            codigo_cliente
+        const { codigo_editora } = req.params
+        const editora = await pool.query(
+            'SELECT (nome) FROM editora WHERE editora.codigo_editora = $1;', [
+            codigo_editora
         ])
-        res.json(cliente.rows[0]);
+        res.json(editora.rows[0]);
     } catch (err) {
         console.log(err.message);
     }
 }
 
-export async function getClients(req, res) {
+export async function getPublishers(req, res) {
     try {
-        const clientes = await pool.query(
-            'SELECT (nome, telefone_1, telefone_2, cpf, cnpj) FROM cliente;'
+        const editoras = await pool.query(
+            'SELECT (codigo_editora, nome) FROM editora;'
         )
-        res.json(clientes.rows[0]);
+        res.json(editoras.rows[0]);
     } catch (err) {
         console.log(err.message);
     }
 }
 
-export async function updateClient(req, res) {
+export async function updatePublisher(req, res) {
     try {
-        const { codigo_cliente } = req.params
-        const { nome, telefone_1, telefone_2, cpf, cnpj } = req.body
-        const cliente = await pool.query( 'UPDATE cliente SET nome = $1, telefone_1 = $2, telefone_2 = $3, cpf = $4, cnpj = $5 WHERE cliente.codigo_cliente = $6', [
-                nome, telefone_1, telefone_2, cpf, cnpj, codigo_cliente
+        const { codigo_editora } = req.params
+        const { nome } = req.body
+        const editora = await pool.query( 'UPDATE editora SET nome = $1 WHERE editora.codigo_editora = $2', [
+                nome, codigo_editora
             ])
 
-        res.json(cliente.rows[0])
+        res.json(editora.rows[0])
     } catch (err) {
         console.log(err.message)
     }
 }
 
-export async function deleteClient(req, res) {
+export async function deletePublisher(req, res) {
     try {
-        const { codigo_cliente } = req.params
-        const cliente = await pool.query(
-            'DELETE FROM cliente WHERE cliente.codigo_cliente = $1;', [
-            codigo_cliente 
+        const { codigo_editora } = req.params
+        const editora = await pool.query(
+            'DELETE FROM editora WHERE editora.codigo_editora = $1;', [
+            codigo_editora 
         ])
-        res.json(cliente.rows[0]);
+        res.json(editora.rows[0]);
     } catch (err) {
         console.log(err.message)
     }
