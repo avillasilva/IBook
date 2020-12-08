@@ -12,6 +12,7 @@ body {
   background-color: #eee;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -40,7 +41,7 @@ body {
 
 .register-container h1,
 .register-container form input {
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
 }
 
 .register-container form label {
@@ -68,4 +69,67 @@ body {
 
 .register-container form #submit-button:hover {
   background-color: #f04234;
+}
+
+/* ------------------------  HEADER ------------------------ */
+header {
+  background-color: #c71c1c;
+  width: 100%;
+}
+
+#nav-bar {
+  display: flex;
+}
+
+#nav-bar #menu li {
+  margin-right: 1.5rem;
+  list-style: none;
+}
+
+#nav-bar #menu {
+  display: flex;
+}
+
+#nav-bar #menu #actual {
+  background-color: #f04234;
+}
+
+#nav-bar #menu,
+#nav-bar #brand {
+  align-items: center;
+  justify-content: center;
+}
+
+#nav-bar #brand {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+#nav-bar #brand h5 {
+  color: #ffffff;
+}
+
+#nav-bar #menu {
+  margin-left: 2rem;
+}
+
+#nav-bar #menu a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+#nav-bar #menu li {
+  padding: 2rem;
+  border-radius: 1rem;
+  transition: ease 1s;
+}
+
+#nav-bar #menu li:hover {
+  background-color: #f04234;
+}
+
+#nav-bar #brand img {
+  height: 40px;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }

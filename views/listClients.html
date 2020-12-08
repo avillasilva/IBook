@@ -1,0 +1,47 @@
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IBook</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/list-clients.css" />
+  </head>
+  <body>
+    <header>
+      <nav id="nav-bar">
+        <div id="brand">
+          <a href="index.html"><img src="images/book.png" alt="book-image" /></a>
+          <h5>IBook</h3>
+        </div>
+        <ul id="menu">
+          <a href="registerClient.html"><li>Cadastrar Cliente</li></a>
+          <a href="listClients.html"><li id="actual">Listar Clientes</li></a>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="table-container">
+      <table>
+        <tr>
+          <th>Nome</th>
+          <th>Telefone 1</th> 
+          <th>Telefone 2</th>
+        </tr>
+        <!-------- BLOCO DE REPETIÇÃO  ------->
+        {% for cliente in clientes_result %}
+          <tr>
+            <td>{{cliente.nome}}</td>
+            <td>{{cliente.telefone_1}}</td>
+            <td>{{cliente.telefone_2}}</td>
+          </tr>
+        {% endfor %}
+      <!------------------------------------>
+    </table> 
+    </div>
+
+  </body>
+</html>

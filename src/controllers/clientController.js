@@ -30,9 +30,11 @@ export async function getClient(req, res) {
 export async function getClients(req, res) {
   try {
     const clientes = await pool.query(
-      'SELECT (nome, telefone_1, telefone_2, cpf, cnpj) FROM cliente;'
+      'SELECT nome, telefone_1, telefone_2, cpf, cnpj FROM cliente;'
     );
-    res.json(clientes.rows);
+
+    const clientes_result = clientes.rows;
+    return res.render('views/listClients.html', { clientes_result });
   } catch (err) {
     console.log(err.message);
   }
