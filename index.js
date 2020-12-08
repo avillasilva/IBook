@@ -3,6 +3,7 @@ import cors from 'cors'
 import 'regenerator-runtime'
 import clientRouter from './src/routes/clientRouter'
 import publisherRouter from './src/routes/publisherRouter'
+import bookRouter from './src/routes/bookRouter'
 
 const app = express()
 
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 
 app.use('/client', clientRouter)
 app.use('/publisher', publisherRouter)
+app.use('/book', bookRouter)
 
 // app.get('/todos', async (req, res) => {
 //     try {
