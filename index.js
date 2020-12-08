@@ -1,21 +1,34 @@
-import express from 'express'
-import cors from 'cors'
-import 'regenerator-runtime'
-import clientRouter from './src/routes/clientRouter'
-import publisherRouter from './src/routes/publisherRouter'
+import express from 'express';
+import cors from 'cors';
+import 'regenerator-runtime';
+import clientRouter from './src/routes/clientRouter';
+import publisherRouter from './src/routes/publisherRouter';
 
-const app = express()
+const app = express();
 
 // Middleware
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
+app.use(express.static('views'));
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/client', clientRouter);
+app.use('/publisher', publisherRouter);
+
+// Configurando a Template Engine
+const nunjucks = require('nunjucks');
+nunjucks.configure('./', {
+  express: app,
+  noCache: true,
+});
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/index.html');
-})
+  res.sendFile(__dirname + '/views/index.html');
+});
 
-app.use('/client', clientRouter)
-app.use('/publisher', publisherRouter)
+app.listen(5000, () => {
+  console.log('Server has started on port 5000');
+});
 
 // app.get('/todos', async (req, res) => {
 //     try {
@@ -45,7 +58,7 @@ app.use('/publisher', publisherRouter)
 //         const { id } = req.params
 //         const { description } = req.body
 //         const updateTodo = await pool.query('UPDATE todo SET description = $1 WHERE todo_id = $2', [
-//             description, 
+//             description,
 //             id
 //         ])
 //         res.json('Todo was updated!')
@@ -66,7 +79,3 @@ app.use('/publisher', publisherRouter)
 //         console.log(err.message)
 //     }
 // })
-
-app.listen(5000, () => {
-    console.log('Server has started on port 5000')
-})
