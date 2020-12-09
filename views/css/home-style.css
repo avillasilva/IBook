@@ -8,7 +8,7 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   font-weight: 500;
-  color: #ffffff;
+  color: #333;
   background-color: #eee;
 }
 
@@ -33,15 +33,9 @@ header {
   display: flex;
 }
 
-#nav-bar #menu,
-#nav-bar #brand {
+#nav-bar #menu {
   align-items: center;
   justify-content: center;
-}
-
-#nav-bar #brand {
-  margin-left: 2rem;
-  margin-bottom: 1rem;
 }
 
 #nav-bar #menu {
@@ -63,8 +57,27 @@ header {
   background-color: #f04234;
 }
 
-#nav-bar #brand img {
-  height: 40px;
+#brand {
+  margin-top: 10rem;
+  margin-left: 5rem;
+
+  display: flex;
+  align-items: center;
+}
+
+#brand .brand-name h1 {
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+#brand .brand-name h3 {
+  font-weight: 300;
+  font-size: 2rem;
+}
+
+#brand img {
+  height: 100px;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
+  margin-left: 2rem;
 }

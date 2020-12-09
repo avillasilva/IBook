@@ -8,7 +8,7 @@ export async function registerClient(req, res) {
       'INSERT INTO cliente (nome, telefone_1, cpf, cnpj) VALUES($1, $2, $3, $4) RETURNING *;',
       [nome, telefone_1, cpf, cnpj]
     );
-    res.json(cliente.rows[0]);
+    return res.render('views/clientRegistered.html');
   } catch (err) {
     console.log(err.message);
   }
