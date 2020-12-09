@@ -24,6 +24,16 @@ body {
   margin-bottom: 10rem;
 }
 
+.register-container .form-content h2 {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  font-weight: 300;
+}
+
+.register-container .form-content select {
+  margin-bottom: 2rem;
+}
+
 .register-container .form-container {
   display: flex;
   justify-content: space-evenly;
@@ -35,6 +45,7 @@ body {
   height: 25rem;
   margin-right: 2rem;
   margin-left: 5rem;
+  margin-top: 1rem;
 
   border-radius: 0.5rem;
 }
@@ -53,7 +64,8 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.register-container form input {
+.register-container form input,
+.register-container .form-content select {
   padding: 1rem;
 }
 
