@@ -15,8 +15,6 @@ body {
 /* ------------------------  TABLE ------------------------ */
 
 .table-container {
-  width: 100vw;
-
   display: flex;
   justify-content: center;
 }
@@ -97,6 +95,8 @@ header {
 }
 
 #nav-bar #menu li {
+  font-size: 1.5rem;
+
   padding: 2rem;
   border-radius: 1rem;
   transition: ease 1s;

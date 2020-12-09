@@ -18,7 +18,7 @@ export async function getClient(req, res) {
   try {
     const codigo_cliente = req.params.codigo_cliente;
     const cliente = await pool.query(
-      'SELECT (nome, telefone_1, telefone_2, cpf, cnpj) FROM cliente WHERE cliente.codigo_cliente = $1;',
+      'SELECT nome, telefone_1, telefone_2, cpf, cnpj FROM cliente WHERE cliente.codigo_cliente = $1;',
       [codigo_cliente]
     );
     res.json(cliente.rows[0]);
@@ -30,7 +30,7 @@ export async function getClient(req, res) {
 export async function getClients(req, res) {
   try {
     const clientes = await pool.query(
-      'SELECT nome, telefone_1, telefone_2, cpf, cnpj FROM cliente;'
+      'SELECT codigo_cliente, nome, telefone_1, telefone_2, cpf, cnpj FROM cliente;'
     );
 
     const clientes_result = clientes.rows;

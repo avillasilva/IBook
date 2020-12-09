@@ -8,6 +8,9 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/list-clients.css" />
   </head>
   <body>
@@ -25,23 +28,73 @@
     </header>
 
     <div class="table-container">
-      <table>
-        <tr>
-          <th>Nome</th>
-          <th>Telefone 1</th> 
-          <th>Telefone 2</th>
-        </tr>
-        <!-------- BLOCO DE REPETIÇÃO  ------->
-        {% for cliente in clientes_result %}
+        <table>
           <tr>
-            <td>{{cliente.nome}}</td>
-            <td>{{cliente.telefone_1}}</td>
-            <td>{{cliente.telefone_2}}</td>
+            <th>Nome</th>
+            <th>Telefone 1</th> 
+            <th>Telefone 2</th>
+            <th>Editar</th>
           </tr>
-        {% endfor %}
-      <!------------------------------------>
-    </table> 
-    </div>
+          <!-------- BLOCO DE REPETIÇÃO  ------->
+          {% for cliente in clientes_result %}
+            <tr>
+              <td>{{cliente.nome}}</td>
+              <td>{{cliente.telefone_1}}</td>
+              <td>{{cliente.telefone_2}}</td>
+              <td>
 
+                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal" onclick="return editMethod('{{cliente.codigo_cliente}}')">Editar</button>
+
+              </td>
+            </tr>
+          {% endfor %}
+        <!------------------------------------>
+      </table> 
+    </div>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" onclick="return closeReload()">&times;</button>
+            <h4 class="modal-title">Editar Cliente</h4>
+          </div>
+          <div class="modal-body">
+            <div class="register-container">
+                <div class="form-content">
+                  <label for="client-name">Nome:</label>
+                  <input type="text" name="nome" id="client-name" required />
+        
+                  <label for="client-phone">Telefone 1:</label>
+                  <input
+                    type="tel"
+                    id="client-phone"
+                    name="telefone_1"
+                    placeholder="ex.: 9876-4567"
+                    pattern="[0-9]{4}-[0-9]{4}"
+                    required
+                  />
+        
+                  <label for="client-cpf">CPF:</label>
+                  <input type="text" name="cpf" id="client-cpf" />
+        
+                  <label for="client-cnpj">CNPJ:</label>
+                  <input type="text" name="cnpj" id="client-cnpj" />
+                </div>
+        
+                <button id={{cliente.codigo_cliente}} type="button" onclick="return updateMethod()">Editar</button>
+
+                
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" class="close" onclick="return closeReload()">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   </body>
+
+  <script src="js/handleRequest.js"></script>
 </html>
