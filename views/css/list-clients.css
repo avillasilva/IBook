@@ -111,3 +111,61 @@ header {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
+
+/* ------------------------ CLIENT FORM ------------------------ */
+.register-container {
+  width: 60vw;
+  margin: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.6rem;
+  color: #333;
+}
+
+.register-container .form-content {
+  display: flex;
+  flex-direction: column;
+
+  width: 50%;
+}
+
+.register-container h1 {
+  text-align: center;
+}
+
+.register-container h1,
+.register-container input {
+  margin-bottom: 1rem;
+}
+
+.register-container label {
+  margin-bottom: 0.5rem;
+}
+
+.register-container input {
+  padding: 1rem;
+}
+
+.register-container #submit-button {
+  background-color: #c71c1c;
+  border: none;
+  border-radius: 0.5rem;
+  color: #fff;
+  cursor: pointer;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 1rem;
+  transition: ease 1s;
+  width: 10rem;
+  font-size: 1.6rem;
+}
+
+.register-container #submit-button:hover {
+  background-color: #f04234;
+}

@@ -47,3 +47,17 @@ function updateMethod() {
 function closeReload() {
   window.location.reload();
 }
+
+function removeMethod(id) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == XMLHttpRequest.DONE) {
+      console.log('deleted with sucess!');
+    }
+  };
+  xhr.open('DELETE', `http://localhost:5000/client/${id}`, true);
+  xhr.send();
+
+  alert('Cliente Removido com sucesso!');
+  window.location.reload();
+}

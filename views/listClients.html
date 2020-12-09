@@ -34,6 +34,7 @@
             <th>Telefone 1</th> 
             <th>Telefone 2</th>
             <th>Editar</th>
+            <th>Remover</th>
           </tr>
           <!-------- BLOCO DE REPETIÇÃO  ------->
           {% for cliente in clientes_result %}
@@ -42,9 +43,10 @@
               <td>{{cliente.telefone_1}}</td>
               <td>{{cliente.telefone_2}}</td>
               <td>
-
                 <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal" onclick="return editMethod('{{cliente.codigo_cliente}}')">Editar</button>
-
+              </td>
+              <td>
+                <button type="button" class="btn btn-danger btn-lg" onclick="return removeMethod('{{cliente.codigo_cliente}}')">Remover</button>
               </td>
             </tr>
           {% endfor %}
@@ -83,7 +85,7 @@
                   <input type="text" name="cnpj" id="client-cnpj" />
                 </div>
         
-                <button id={{cliente.codigo_cliente}} type="button" onclick="return updateMethod()">Editar</button>
+                <button id="submit-button" type="button" onclick="return updateMethod()">Editar</button>
 
                 
           </div>
