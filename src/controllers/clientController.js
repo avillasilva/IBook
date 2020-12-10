@@ -1,5 +1,5 @@
-import 'regenerator-runtime'
-import { pool } from '../config/db'
+import 'regenerator-runtime';
+import { pool } from '../config/db';
 
 export async function registerClient(req, res) {
     try {
@@ -14,7 +14,7 @@ export async function registerClient(req, res) {
                 cliente.rows[0].codigo_cliente, endereco.rua, endereco.numero, endereco.bairro, endereco.cidade, endereco.cep, endereco.estado
         ])
 
-        res.status(200).json(cliente.rows[0])
+        return res.render('views/clientRegistered.html');
     } catch (err) {
         console.log(err.message)
     }
@@ -29,7 +29,7 @@ export async function getClient(req, res) {
              FROM cliente, endereco WHERE cliente.codigo_cliente = $1 AND endereco.codigo_cliente = $1;', [
             codigo_cliente
         ])
-        res.status(200).json(cliente.rows[0])
+        res.json(cliente.rows[0]);
     } catch (err) {
         console.log(err.message)
     }
@@ -59,7 +59,7 @@ export async function getClients(req, res) {
         //     }
         // })
         
-        res.status(200).json(queryResponse.rows)
+        return res.render('views/listClients.html', { clientes_result });
     } catch (err) {
         console.log(err.message)
     }
@@ -79,7 +79,7 @@ export async function updateClient(req, res) {
                 endereco.rua, endereco.numero, endereco.bairro, endereco.cidade, endereco.estado, endereco.cep, codigo_cliente 
         ])
 
-        res.status(200).json(cliente.rows[0])
+        res.json(cliente.rows[0]);
     } catch (err) {
         console.log(err.message)
     }
@@ -92,7 +92,7 @@ export async function deleteClient(req, res) {
             'DELETE FROM cliente WHERE cliente.codigo_cliente = $1;', [
             codigo_cliente 
         ])
-        res.status(200).json(cliente.rows[0]);
+        res.json(cliente.rows[0]);
     } catch (err) {
         console.log(err.message)
     }

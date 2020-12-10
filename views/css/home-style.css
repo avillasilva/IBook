@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  background-color: #eee;
+}
+
+header {
+  background-color: #c71c1c;
+  width: 100%;
+
+  position: fixed;
+  top: 0;
+}
+
+#nav-bar {
+  display: flex;
+}
+
+#nav-bar #menu li {
+  margin-right: 1.5rem;
+  list-style: none;
+}
+
+#nav-bar #menu {
+  display: flex;
+}
+
+#nav-bar #menu {
+  align-items: center;
+  justify-content: center;
+}
+
+#nav-bar #menu {
+  margin-left: 2rem;
+}
+
+#nav-bar #menu a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+#nav-bar #menu li {
+  padding: 2rem;
+  border-radius: 1rem;
+  transition: ease 1s;
+}
+
+#nav-bar #menu li:hover {
+  background-color: #f04234;
+}
+
+#brand {
+  margin-top: 10rem;
+  margin-left: 5rem;
+
+  display: flex;
+  align-items: center;
+}
+
+#brand .brand-name h1 {
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+#brand .brand-name h3 {
+  font-weight: 300;
+  font-size: 2rem;
+}
+
+#brand img {
+  height: 100px;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  margin-left: 2rem;
+}
+
+#footer {
+  font-size: .8em;
+  font-weight: 400;
+  margin-top: 5rem;
+  margin-left: 5rem;
+}

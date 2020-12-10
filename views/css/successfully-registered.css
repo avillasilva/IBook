@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  background-color: #eee;
+}
+
+.sucess-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.sucess-message img {
+  height: 5rem;
+}
+
+.sucess-message h1 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sucess-message button {
+  background-color: #c71c1c;
+  border: none;
+  border-radius: 0.5rem;
+  color: #fff;
+  cursor: pointer;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 1rem;
+  transition: ease 1s;
+  width: 15rem;
+}
+
+.sucess-message button:hover {
+  background-color: #f04234;
+}

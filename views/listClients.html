@@ -1,0 +1,102 @@
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IBook</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/list-clients.css" />
+  </head>
+  <body>
+    <header>
+      <nav id="nav-bar">
+        <div id="brand">
+          <a href="index.html"><img src="images/book.png" alt="book-image" /></a>
+          <h5>IBook</h3>
+        </div>
+        <ul id="menu">
+          <a href="registerClient.html"><li>Cadastrar Cliente</li></a>
+          <a href="listClients.html"><li id="actual">Listar Clientes</li></a>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="table-container">
+        <table>
+          <tr>
+            <th>Nome</th>
+            <th>Telefone 1</th> 
+            <th>Telefone 2</th>
+            <th>Editar</th>
+            <th>Remover</th>
+          </tr>
+          <!-------- BLOCO DE REPETIÇÃO  ------->
+          {% for cliente in clientes_result %}
+            <tr>
+              <td>{{cliente.nome}}</td>
+              <td>{{cliente.telefone_1}}</td>
+              <td>{{cliente.telefone_2}}</td>
+              <td>
+                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal" onclick="return editMethod('{{cliente.codigo_cliente}}')">Editar</button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-danger btn-lg" onclick="return removeMethod('{{cliente.codigo_cliente}}')">Remover</button>
+              </td>
+            </tr>
+          {% endfor %}
+        <!------------------------------------>
+      </table> 
+    </div>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" onclick="return closeReload()">&times;</button>
+            <h4 class="modal-title">Editar Cliente</h4>
+          </div>
+          <div class="modal-body">
+            <div class="register-container">
+                <div class="form-content">
+                  <label for="client-name">Nome:</label>
+                  <input type="text" name="nome" id="client-name" required />
+        
+                  <label for="client-phone">Telefone 1:</label>
+                  <input
+                    type="tel"
+                    id="client-phone"
+                    name="telefone_1"
+                    placeholder="ex.: 9876-4567"
+                    pattern="[0-9]{4}-[0-9]{4}"
+                    required
+                  />
+        
+                  <label for="client-cpf">CPF:</label>
+                  <input type="text" name="cpf" id="client-cpf" />
+        
+                  <label for="client-cnpj">CNPJ:</label>
+                  <input type="text" name="cnpj" id="client-cnpj" />
+                </div>
+        
+                <button id="submit-button" type="button" onclick="return updateMethod()">Editar</button>
+
+                
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" class="close" onclick="return closeReload()">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+
+  <script src="js/clientHandleRequest.js"></script>
+</html>

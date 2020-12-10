@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  background-color: #eee;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-container {
+  width: 30vw;
+  margin: 2rem;
+}
+
+.register-container .form-content {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.register-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-container h1 {
+  text-align: center;
+}
+
+.register-container h1,
+.register-container form input {
+  margin-bottom: 0.6rem;
+}
+
+.register-container form label {
+  margin-bottom: 0.5rem;
+}
+
+.register-container form input {
+  padding: 1rem;
+}
+
+.register-container form #submit-button {
+  background-color: #c71c1c;
+  border: none;
+  border-radius: 0.5rem;
+  color: #fff;
+  cursor: pointer;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 1rem;
+  transition: ease 1s;
+  width: 10rem;
+}
+
+.register-container form #submit-button:hover {
+  background-color: #f04234;
+}
+
+/* ------------------------  HEADER ------------------------ */
+header {
+  background-color: #c71c1c;
+  width: 100%;
+}
+
+#nav-bar {
+  display: flex;
+}
+
+#nav-bar #menu li {
+  margin-right: 1.5rem;
+  list-style: none;
+}
+
+#nav-bar #menu {
+  display: flex;
+}
+
+#nav-bar #menu #actual {
+  background-color: #f04234;
+}
+
+#nav-bar #menu,
+#nav-bar #brand {
+  align-items: center;
+  justify-content: center;
+}
+
+#nav-bar #brand {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+#nav-bar #brand h5 {
+  color: #ffffff;
+}
+
+#nav-bar #menu {
+  margin-left: 2rem;
+}
+
+#nav-bar #menu a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+#nav-bar #menu li {
+  padding: 2rem;
+  border-radius: 1rem;
+  transition: ease 1s;
+}
+
+#nav-bar #menu li:hover {
+  background-color: #f04234;
+}
+
+#nav-bar #brand img {
+  height: 40px;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
