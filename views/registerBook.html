@@ -19,7 +19,7 @@
         </div>
         <ul id="menu">
           <a href="registerBook.html"><li id="actual">Cadastrar Livro</li></a>
-          <a href=""><li>Listar Livros</li></a>
+          <a href="listBooks.html"><li>Listar Livros</li></a>
         </ul>
       </nav>
     </header>
@@ -63,11 +63,7 @@
             <select name="codigo_editora" id="editora" required>
               <option value="" selected disabled>Selecione uma opção</option>
 
-              <!-------- BLOCO DE REPETIÇÃO  ------->
-              {% for editora in editoras_result %}
-                <option value={{editora.codigo_editora}}>{{editora.nome}}</option>
-              {% endfor %}
-              <!------------------------------------>
+              <!-- Dynamic Loading -->
 
             </select>
   
@@ -77,5 +73,7 @@
 
       </form>
     </div>
+
+    <script src="js/utils.js"></script>
   </body>
 </html>

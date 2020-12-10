@@ -8,7 +8,7 @@ export async function registerPublisher(req, res) {
       'INSERT INTO editora (nome) VALUES($1) RETURNING *;',
       [nome]
     );
-    res.json(editora.rows[0]);
+    return res.render('views/publisherRegistered.html');
   } catch (err) {
     console.log(err.message);
   }
@@ -32,8 +32,7 @@ export async function getPublishers(req, res) {
     const editoras = await pool.query(
       'SELECT codigo_editora, nome FROM editora;'
     );
-    const editoras_result = editoras.rows;
-    return res.render('views/registerBook.html', { editoras_result });
+    res.json(editoras.rows);
   } catch (err) {
     console.log(err.message);
   }
