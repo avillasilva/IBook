@@ -10,6 +10,12 @@ function editMethod(id) {
       document.getElementById('client-phone').value = result.telefone_1;
       document.getElementById('client-cpf').value = result.cpf;
       document.getElementById('client-cnpj').value = result.cnpj;
+      document.getElementById('client-rua').value = result.rua;
+      document.getElementById('client-numero').value = result.numero;
+      document.getElementById('client-bairro').value = result.bairro;
+      document.getElementById('client-cidade').value = result.cidade;
+      document.getElementById('client-cep').value = result.cep;
+      document.getElementById('client-estado').value = result.estado;
     }
   };
   xhr.open('GET', `http://localhost:5000/client/${id}`, true);

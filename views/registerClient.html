@@ -27,6 +27,9 @@
       <form action="client/register" method="POST">
         <div class="form-content">
           <h1>Cadastro Cliente</h1>
+
+          <h3>Dados Cliente</h3>
+
           <label for="client-name">Nome:</label>
           <input type="text" name="nome" id="client-name" required />
 
@@ -45,6 +48,27 @@
 
           <label for="client-cnpj">CNPJ:</label>
           <input type="text" name="cnpj" id="client-cnpj" />
+
+          <h3>Dados Endereço</h3>
+
+          <label for="client-rua">Rua:</label>
+          <input type="text" name="rua" id="client-rua" />
+
+          <label for="client-numero">Número:</label>
+          <input type="number" name="numero" id="client-numero" />
+
+          <label for="client-bairro">Bairro:</label>
+          <input type="text" name="bairro" id="client-bairro" />
+
+          <label for="client-cidade">Cidade:</label>
+          <input type="text" name="cidade" id="client-cidade" />
+
+          <label for="client-cep">CEP:</label>
+          <input type="text" name="cep" id="client-cep" />
+
+          <label for="client-estado">Estado:</label>
+          <input type="text" name="estado" id="client-estado" />
+
         </div>
 
         <button type="submit" id="submit-button">Cadastrar cliente</button>
