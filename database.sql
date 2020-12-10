@@ -2,7 +2,10 @@
 -- AS OUTRAS PODEM SER EXECUTADAS EM CONJUNTO
 CREATE DATABASE biblioteca;
 
--- QUERIES PARA EXCLUIR AS TABELAS QUANDO NECESSÁRIO
+-- POSSÍVEIS ESTADOS DE UM EMPRÉSTIMO --
+CREATE TYPE emprestimo_estado AS ENUM ('Não devolvido', 'Devolvido');
+
+-- QUERIES PARA EXCLUIR AS TABELAS QUANDO NECESSÁRIO --
 DROP TABLE IF EXISTS emprestimo_livro;
 DROP TABLE IF EXISTS emprestimo;
 DROP TABLE IF EXISTS endereco;
@@ -10,7 +13,8 @@ DROP TABLE IF EXISTS cliente;
 DROP TABLE IF EXISTS livro;
 DROP TABLE IF EXISTS editora;
 
--- QUERIES PARA CRIAÇÃO DAS TABELAS
+-- QUERIES PARA CRIAÇÃO DAS TABELAS --
+
 CREATE TABLE IF NOT EXISTS cliente (
     codigo_cliente SERIAL,
     nome VARCHAR(50) NOT NULL,
@@ -33,7 +37,7 @@ CREATE TABLE IF NOT EXISTS livro (
     titulo VARCHAR(50) NOT NULL,
     autores VARCHAR(50) NOT NULL,
     ano_publicacao DATE NOT NULL,
-    num_exemplares INTEGER NOT NULL,
+    num_exemplares INTEGER NOT NULL CHECK (num_exemplares > 1),
     isbn INTEGER NOT NULL,
     num_paginas INTEGER NOT NULL,
     genero VARCHAR(50) NOT NULL,
@@ -45,6 +49,7 @@ CREATE TABLE IF NOT EXISTS livro (
 CREATE TABLE IF NOT EXISTS emprestimo (
     num_emprestimo SERIAL,
     codigo_cliente SERIAL,
+    estado emprestimo_estado DEFAULT 'Não devolvido',
     data_emprestimo DATE NOT NULL,
     data_devolucao DATE NOT NULL,
     PRIMARY KEY (num_emprestimo),
@@ -71,16 +76,43 @@ CREATE TABLE IF NOT EXISTS endereco (
     UNIQUE (codigo_cliente)
 );
 
--- QUERIES PARA INSERÇÃO DE DADOS PARA TESTES
+-- QUERIES PARA INSERÇÃO DE DADOS PARA TESTES --
 
--- CLIENTES E ENDEREÇOS
+-- CLIENTE
 INSERT INTO cliente (nome, telefone_1) VALUES ('luan', '83996123312');
 
+-- ENDERECO
 INSERT INTO endereco (codigo_cliente, rua, numero, bairro, cidade, estado, cep)
     VALUES (1, 'antonio targino', 651, 'cidade universitaria', 'joão pessoa', 'paraiba', '58052250');
 
--- EDITORAS E LIVROS
+-- EDITORA
 INSERT INTO editora (nome) VALUES ('Fu** de vez');
 
+-- LIVRO
 INSERT INTO livro (codigo_editora, titulo, autores, ano_publicacao, num_exemplares, isbn, num_paginas, genero, num_edicao)
     VALUES (1, 'Se ferrando em banco de dados I', 'Ávilla, Renan, Naiara, Luan, Emmanuella, Luyza', '2020-12-07', 10,  1234, 100, 'terror/educativo', 1);
+
+
+-- INSERT INTO editora (nome) VALUES ('alamo');
+-- SELECT * FROM editora;
+-- INSERT INTO livro (
+-- 	codigo_editora, 
+-- 	titulo, 
+-- 	autores, 
+-- 	ano_publicacao, 
+-- 	num_exemplares, 
+-- 	isbn, 
+-- 	num_paginas, 
+-- 	genero, 
+-- 	num_edicao) 
+-- 	VALUES (
+-- 		1,
+-- 		'asdfasfd',
+-- 		'adfadfasdfa',
+-- 		'2020-12-09',
+-- 		1,
+-- 		8524,
+-- 		100,
+-- 		'asdfasdf',
+-- 		1
+-- 	);
