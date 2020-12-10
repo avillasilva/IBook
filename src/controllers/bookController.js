@@ -18,7 +18,7 @@ export async function getBook(req, res) {
     try {
         const codigo_livro = req.params.codigo_livro
         const livro = await pool.query(
-            'SELECT (codigo_editora, titulo, autores, ano_publicacao, num_exemplares, isbn, num_paginas, genero, num_edicao) FROM livro WHERE livro.codigo_livro = $1;', [
+            'SELECT codigo_editora, titulo, autores, ano_publicacao, num_exemplares, isbn, num_paginas, genero, num_edicao FROM livro WHERE livro.codigo_livro = $1;', [
             codigo_livro
         ])
         res.json(livro.rows[0]);
@@ -30,7 +30,7 @@ export async function getBook(req, res) {
 export async function getBooks(req, res) {
     try {
         const livros = await pool.query(
-            'SELECT (codigo_editora, titulo, autores, ano_publicacao, num_exemplares, isbn, num_paginas, genero, num_edicao) FROM livro;'
+            'SELECT codigo_editora, titulo, autores, ano_publicacao, num_exemplares, isbn, num_paginas, genero, num_edicao FROM livro;'
         )
         res.json(livros.rows[0]);
     } catch (err) {

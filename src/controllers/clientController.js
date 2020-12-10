@@ -43,7 +43,7 @@ export async function getClients(req, res) {
             WHERE cliente.codigo_cliente = endereco.codigo_cliente;'
         )
         
-        const clientes_enderecos = []
+        const clientes_endereco = []
         
         return res.render('views/listClients.html', { clientes_result });
     } catch (err) {

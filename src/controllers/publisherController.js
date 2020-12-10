@@ -18,7 +18,7 @@ export async function getPublisher(req, res) {
   try {
     const { codigo_editora } = req.params;
     const editora = await pool.query(
-      'SELECT (nome) FROM editora WHERE editora.codigo_editora = $1;',
+      'SELECT nome FROM editora WHERE editora.codigo_editora = $1;',
       [codigo_editora]
     );
     res.json(editora.rows[0]);
