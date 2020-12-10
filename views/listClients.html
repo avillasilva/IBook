@@ -32,7 +32,14 @@
           <tr>
             <th>Nome</th>
             <th>Telefone 1</th> 
-            <th>Telefone 2</th>
+            <!-- <th>Telefone 2</th> -->
+            <th>Rua</th>
+            <th>Número</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>CEP</th>
+            <th>Estado</th>
+
             <th>Editar</th>
             <th>Remover</th>
           </tr>
@@ -41,7 +48,12 @@
             <tr>
               <td>{{cliente.nome}}</td>
               <td>{{cliente.telefone_1}}</td>
-              <td>{{cliente.telefone_2}}</td>
+              <td>{{cliente.rua}}</td>
+              <td>{{cliente.numero}}</td>
+              <td>{{cliente.bairro}}</td>
+              <td>{{cliente.cidade}}</td>
+              <td>{{cliente.cep}}</td>
+              <td>{{cliente.estado}}</td>
               <td>
                 <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal" onclick="return editMethod('{{cliente.codigo_cliente}}')">Editar</button>
               </td>
