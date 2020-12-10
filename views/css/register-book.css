@@ -16,6 +16,17 @@ body {
   width: 50vw;
 }
 
+.form-image {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-image #submit-button  {
+  width: 70%;
+  margin-right: 2rem;
+  margin-left: 5rem;
+}
+
 .register-container .form-content {
   display: flex;
   flex-direction: column;
@@ -46,6 +57,7 @@ body {
   margin-right: 2rem;
   margin-left: 5rem;
   margin-top: 1rem;
+  margin-bottom: 3rem;
 
   border-radius: 0.5rem;
 }
