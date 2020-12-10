@@ -14,10 +14,14 @@ xhr.onload = function (e) {
           publisher.nome +
           '</td>' +
           '<td>' +
-          // "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick=return editMethod(`${publisher.codigo_editora}`)'>Editar</button>" +
+          "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
+          publisher.codigo_editora +
+          ")'>Editar</button>" +
           '</td>' +
           '<td>' +
-          // "<button type='button' class='btn btn-danger btn-lg' onclick='return removeMethod(`${publisher.codigo_editora}`)'>Remover</button>" +
+          "<button type='button' class='btn btn-danger btn-lg' onclick='return removeMethod(" +
+          publisher.codigo_editora +
+          ")'>Remover</button>" +
           '</td>' +
           '</tr>'
       );
@@ -34,8 +38,7 @@ function editMethod(id) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState == XMLHttpRequest.DONE) {
       var result = JSON.parse(xhr.responseText);
-      // document.getElementById('publisher-name').value = result.nome;
-      document.getElementById('publisher-name').value = 'teste';
+      document.getElementById('publisher-name').value = result.nome;
     }
   };
   xhr.open('GET', `http://localhost:5000/publisher/${id}`, true);
