@@ -45,20 +45,6 @@ export async function getClients(req, res) {
         
         const clientes_enderecos = []
         
-        // queryResponse.rows.forEach((queryItem) => {
-        //     var check = false
-            
-        //     clientes_enderecos.forEach((cliente) => {
-        //         if (queryItem.codigo_cliente == cliente.codigo_cliente) {
-        //             check = true
-        //         }
-        //     })
-
-        //     if (!check) {
-        //         clientes_enderecos.push(queryItem)
-        //     }
-        // })
-        
         return res.render('views/listClients.html', { clientes_result });
     } catch (err) {
         console.log(err.message)
