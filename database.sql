@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS emprestimo (
     num_emprestimo SERIAL,
     codigo_cliente SERIAL,
     estado emprestimo_estado DEFAULT 'Não devolvido',
+    num_renovacoes uint8 CHECK (num_renovacoes <= 3),
     data_emprestimo DATE NOT NULL,
     data_devolucao DATE NOT NULL,
     PRIMARY KEY (num_emprestimo),

@@ -6,6 +6,15 @@ export async function borrow(req, res) {
         const codigo_cliente = req.params.codigo_cliente
         const { data_emprestimo, data_devolucao, codigos_livros } = req.body
 
+        const check_renovacoes = await pool.query(
+            'SELECT num_renovacoes FROM emprestimo WHERE emprestimo.codigo_cliente = $1;',
+            [ codigo_cliente ]
+        )
+
+        if (check_renovacoes.rows[0].num_renovacoes === 5) {
+            return res.send('O cliente já renovou o empréstimo 3 vezes')
+        }
+
         for (const codigo_livro of codigos_livros) {
             const queryResponse = await pool.query(
                 'SELECT titulo, num_exemplares FROM livro WHERE livro.codigo_livro = $1;', [
