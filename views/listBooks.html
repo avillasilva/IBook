@@ -1,0 +1,152 @@
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IBook</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/list-clients.css" />
+  </head>
+  <body>
+    <header>
+      <nav id="nav-bar">
+        <div id="brand">
+          <a href="index.html"
+            ><img src="images/book.png" alt="book-image"
+          /></a>
+          <h5>IBook</h5>
+        </div>
+        <ul id="menu">
+          <a href="registerBook.html"><li>Cadastrar Livro</li></a>
+          <a href="listBooks.html"><li id="actual">Listar Livros</li></a>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="table-container">
+      <table class="books-table">
+        <th>Nome</th>
+        <th>Editar</th>
+        <th>Remover</th>
+        <!-- Dynamic Loading -->
+      </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              onclick="return closeReload()"
+            >
+              &times;
+            </button>
+            <h4 class="modal-title">Editar Editora</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-container">
+              <div class="form-image">
+                <img src="images/book-template.png" alt="template" />
+                <button type="submit" id="submit-button">
+                  Cadastrar imagem de capa
+                </button>
+              </div>
+              <div class="form-content">
+                <h2>Dados do Livro</h2>
+
+                <label for="book-title">Título:</label>
+                <input type="text" name="titulo" id="book-title" required />
+
+                <label for="book-authors">Autores:</label>
+                <input type="text" name="autores" id="book-authors" required />
+
+                <label for="book-publication-year">Ano de Publicação:</label>
+                <input
+                  type="date"
+                  name="ano_publicacao"
+                  id="book-publication-year"
+                  required
+                />
+
+                <label for="book-number-of-copies">Número de Exemplares:</label>
+                <input
+                  type="number"
+                  name="num_exemplares"
+                  id="book-number-of-copies"
+                  required
+                />
+
+                <label for="book-isbn">ISBN:</label>
+                <input type="number" name="isbn" id="book-isbn" required />
+
+                <label for="book-number-of-pages">Número de Páginas:</label>
+                <input
+                  type="number"
+                  name="num_paginas"
+                  id="book-number-of-pages"
+                  required
+                />
+
+                <label for="book-gender">Gênero:</label>
+                <input type="text" name="genero" id="book-gender" required />
+
+                <label for="book-number-edition">Número da Edição:</label>
+                <input
+                  type="number"
+                  name="num_edicao"
+                  id="book-number-edition"
+                  required
+                />
+
+                <h2>Dados da Editora</h2>
+
+                <label for="editora">Escolha uma editora:</label>
+                <select name="codigo_editora" id="editora" required>
+                  <option value="" selected disabled>
+                    Selecione uma opção
+                  </option>
+
+                  <!-- Dynamic Loading -->
+                </select>
+
+                <button
+                  id="submit-button"
+                  type="button"
+                  onclick="return updateMethod()"
+                >
+                  Editar
+                </button>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-default"
+                data-dismiss="modal"
+                class="close"
+                onclick="return closeReload()"
+              >
+                Fechar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="js/loadBookTable.js"></script>
+</html>

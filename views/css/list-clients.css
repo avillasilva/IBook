@@ -169,3 +169,95 @@ header {
 .register-container #submit-button:hover {
   background-color: #f04234;
 }
+
+/* ------------------------ BOOK FORM ------------------------ */
+
+.form-container {
+  width: 50vw;
+  font-size: 1.5rem;
+}
+
+.form-image {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-image #submit-button {
+  width: 70%;
+  margin-right: 2rem;
+  margin-left: 5rem;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+
+  width: 30%;
+  margin-bottom: 10rem;
+}
+
+.form-content h2 {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  font-weight: 300;
+}
+
+.form-content select {
+  margin-bottom: 2rem;
+}
+
+.form-container {
+  display: flex;
+  justify-content: space-evenly;
+
+  width: 100%;
+}
+
+.form-container img {
+  height: 25rem;
+  margin-right: 2rem;
+  margin-left: 5rem;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+
+  border-radius: 0.5rem;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+h1,
+input {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  margin-bottom: 0.5rem;
+}
+
+input,
+form-content select {
+  padding: 1rem;
+}
+
+#submit-button {
+  background-color: #c71c1c;
+  border: none;
+  border-radius: 0.5rem;
+  color: #fff;
+  cursor: pointer;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 1rem;
+  transition: ease 1s;
+
+  font-size: 1rem;
+}
+
+#submit-button:hover {
+  background-color: #f04234;
+}
