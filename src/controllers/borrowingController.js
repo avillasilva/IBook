@@ -20,7 +20,7 @@ export async function borrow(req, res) {
         
         const emprestimo = await pool.query(
             'INSERT INTO emprestimo (codigo_cliente, data_emprestimo, data_devolucao, estado) VALUES ($1, $2, $3, $4) RETURNING *;', [
-                codigo_cliente, data_emprestimo, data_devolucao
+                codigo_cliente, data_emprestimo, data_devolucao, 'Não devolvido'
         ])
 
         for (const codigo_livro of codigos_livros) {
@@ -47,9 +47,10 @@ export async function clientBorrows(req, res) {
         const emprestimos_livros = []
 
         const queryEmprestimos = await pool.query(
-            'SELECT num_emprestimo, data_emprestimo, data_devolucao \
-            FROM emprestimo WHERE emprestimo.codigo_cliente = $1;', [
-                codigo_cliente
+            'SELECT num_emprestimo, data_emprestimo, data_devolucao, estado \
+            FROM emprestimo WHERE emprestimo.codigo_cliente = $1 \
+            AND emprestimo.estado = $2;', [
+                codigo_cliente, 'Não devolvido'
         ])
 
         queryEmprestimos.rows.forEach((element) => {
@@ -58,6 +59,7 @@ export async function clientBorrows(req, res) {
                     num_emprestimo: element.num_emprestimo,
                     data_emprestimo: element.data_emprestimo,
                     data_devolucao: element.data_devolucao,
+                    estado: element.estado,
                     livros: []
                 })
         })
@@ -89,12 +91,28 @@ export async function updateBorrowStatus(req, res) {
     try {
         const num_emprestimo = req.params.num_emprestimo
 
-        const livro = await pool.query(
+        const updateEmprestimo = await pool.query(
             'UPDATE emprestimo SET estado = $1 WHERE emprestimo.num_emprestimo = $2', [
-            'Não devolvido', num_emprestimo
+            'Devolvido', num_emprestimo
         ])
 
-        res.json(livro.rows[0])
+        const livrosEmprestados = await pool.query(
+            'SELECT codigo_livro FROM emprestimo_livro \
+            WHERE emprestimo_livro.num_emprestimo = $1;', [
+                num_emprestimo
+            ]
+        )
+
+        for (const livro of livrosEmprestados.rows) {
+            const updateNumExemplares = await pool.query(
+                'UPDATE livro SET num_exemplares = num_exemplares + 1\
+                WHERE livro.codigo_livro = $1;', [
+                    livro.codigo_livro
+                ]
+            )
+        }
+
+        res.status(200).send('Livros devolvidos')
     } catch (err) {
         console.log(err.message)
     }
