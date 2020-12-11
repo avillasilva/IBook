@@ -14,12 +14,12 @@ xhr.onload = function (e) {
           publisher.nome +
           '</td>' +
           '<td>' +
-          "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
+          "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
           publisher.codigo_editora +
           ")'>Editar</button>" +
           '</td>' +
           '<td>' +
-          "<button type='button' class='btn btn-danger btn-lg' onclick='return removeMethod(" +
+          "<button type='button' class='btn btn-secundary buttons-style' onclick='return removeMethod(" +
           publisher.codigo_editora +
           ")'>Remover</button>" +
           '</td>' +

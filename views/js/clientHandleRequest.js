@@ -35,22 +35,22 @@ xhr.onload = function (e) {
           cliente.estado +
           '</td>' +
           '<td>' +
-          "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
+          "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
           cliente.codigo_cliente +
           ")'>Editar</button>" +
           '</td>' +
           '<td>' +
-          "<button type='button' class='btn btn-danger btn-lg' onclick='return removeMethod(" +
+          "<button type='button' class='btn btn-secundary buttons-style' onclick='return removeMethod(" +
           cliente.codigo_cliente +
           ")'>Remover</button>" +
           '</td>' +
-          '<td>' +
-          "<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#borrowingModalCreate' onclick='return linkId(" +
+          '<td width="100%">' +
+          "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalCreate' onclick='return linkId(" +
           cliente.codigo_cliente +
-          ")'>Novo Empréstimo</button>" +
-          "<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#borrowingModalShow' onclick='return getBorrows(" +
+          ")'style='width: 15rem;'>Novo Empréstimo</button>" +
+          "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalShow' onclick='return getBorrows(" +
           cliente.codigo_cliente +
-          ")'>Ver Empréstimos</button>" +
+          ")'style='width: 15rem;margin-left: 1rem;'>Ver Empréstimos</button>" +
           '</td>' +
           '</tr>'
       );
@@ -169,22 +169,22 @@ function searchClientByName() {
               cliente.estado +
               '</td>' +
               '<td>' +
-              "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
+              "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
               cliente.codigo_cliente +
               ")'>Editar</button>" +
               '</td>' +
               '<td>' +
-              "<button type='button' class='btn btn-danger btn-lg' onclick='return removeMethod(" +
+              "<button type='button' class='btn btn-secundary buttons-style' onclick='return removeMethod(" +
               cliente.codigo_cliente +
               ")'>Remover</button>" +
               '</td>' +
-              '<td>' +
-              "<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#borrowingModalCreate' onclick='return linkId(" +
+              '<td width="100%">' +
+              "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalCreate' onclick='return linkId(" +
               cliente.codigo_cliente +
-              ")'>Novo Empréstimo</button>" +
-              "<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#borrowingModalShow' onclick='return getBorrows(" +
+              ")'style='width: 15rem;margin-left: 1rem;'>Novo Empréstimo</button>" +
+              "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalShow' onclick='return getBorrows(" +
               cliente.codigo_cliente +
-              ")'>Ver Empréstimos</button>" +
+              ")'style='width: 15rem;margin-left: 1rem;'>Ver Empréstimos</button>" +
               '</td>' +
               '</tr>'
           );
