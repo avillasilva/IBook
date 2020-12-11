@@ -52,31 +52,6 @@
             <th>Empréstimo</th>
           </thead>
           <tbody class="clients-table"></tbody>
-          <!-------- BLOCO DE REPETIÇÃO  ------->
-          <!-- {% for cliente in clientes_result %}
-            <tr>
-              <td>{{cliente.nome}}</td>
-              <td>{{cliente.telefone_1}}</td>
-              <td>{{cliente.rua}}</td>
-              <td>{{cliente.numero}}</td>
-              <td>{{cliente.bairro}}</td>
-              <td>{{cliente.cidade}}</td>
-              <td>{{cliente.cep}}</td>
-              <td>{{cliente.estado}}</td>
-              <td>
-                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal" onclick="return editMethod('{{cliente.codigo_cliente}}')">Editar</button>
-              </td>
-              <td>
-                <button type="button" class="btn btn-danger btn-lg" onclick="return removeMethod('{{cliente.codigo_cliente}}')">Remover</button>
-              </td>
-
-              <td>
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#borrowingModalCreate" onclick="return linkId('{{cliente.codigo_cliente}}')">Novo Empréstimo</button>
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#borrowingModalShow" onclick="return getBorrows('{{cliente.codigo_cliente}}')">Ver Empréstimos</button>
-              </td>
-            </tr>
-          {% endfor %} -->
-        <!------------------------------------>
       </table> 
     </div>
   

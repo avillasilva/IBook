@@ -233,24 +233,62 @@ function getBorrows(id) {
     if (xhr.readyState == XMLHttpRequest.DONE) {
       var result = JSON.parse(xhr.responseText);
 
-      var textP = '';
+      var textP =
+        '<table width="100%"><tbody><thead><th>Data Empréstimo</th><th>Data Devolução</th><th>Título do Livro</th><th>Estado</th>';
+
       for (var item_id = 0; item_id < result.length; item_id++) {
         textP +=
-          '<hr style="background-color: black;height: 1px; border: 0;">' +
-          '<strong>Data Empréstimo:</strong> <p>' +
+          '<tr>' +
+          '<td>' +
           result[item_id].data_emprestimo +
-          '</p><strong>Data Devolução:</strong> <p>' +
+          '</td>' +
+          '<td>' +
           result[item_id].data_devolucao +
-          '</p>';
+          '</td>';
         var livros = result[item_id].livros;
         for (var i = 0; i < livros.length; i++) {
-          textP = textP + 'Título do Livro: ' + livros[i].titulo;
+          textP += '<td>' + livros[i].titulo + '</td>';
         }
+        textP += '<td>' + result[item_id].estado + '</td>';
+        textP += '</tr></thead></tbody></table>';
       }
-      document.getElementById('info').innerHTML =
-        textP + '<hr style="background-color: black;height: 1px; border: 0;">';
+      document.getElementById('info').innerHTML = textP;
+
+      {
+        /* </thead>
+        <tbody></tbody>
+        </table>'; */
+      }
     }
   };
   xhr.open('GET', `http://localhost:5000/borrow/${id}`, true);
   xhr.send();
 }
+
+// function getBorrows(id) {
+//   var xhr = new XMLHttpRequest();
+//   xhr.onreadystatechange = function () {
+//     if (xhr.readyState == XMLHttpRequest.DONE) {
+//       var result = JSON.parse(xhr.responseText);
+
+//       var textP = '';
+//       for (var item_id = 0; item_id < result.length; item_id++) {
+//         textP +=
+//           '<hr style="background-color: black;height: 1px; border: 0;">' +
+//           '<strong>Data Empréstimo:</strong> <p>' +
+//           result[item_id].data_emprestimo +
+//           '</p><strong>Data Devolução:</strong> <p>' +
+//           result[item_id].data_devolucao +
+//           '</p>';
+//         var livros = result[item_id].livros;
+//         for (var i = 0; i < livros.length; i++) {
+//           textP = textP + 'Título do Livro: ' + livros[i].titulo;
+//         }
+//       }
+//       document.getElementById('info').innerHTML =
+//         textP + '<hr style="background-color: black;height: 1px; border: 0;">';
+//     }
+//   };
+//   xhr.open('GET', `http://localhost:5000/borrow/${id}`, true);
+//   xhr.send();
+// }

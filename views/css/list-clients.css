@@ -296,3 +296,7 @@ form-content select {
   font-size: 1.4rem;
   margin-right: 1rem;
 }
+
+.register-container .form-content {
+  width: 100%;
+}
