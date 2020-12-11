@@ -27,9 +27,15 @@
       </nav>
     </header>
 
+    <div class="search-input">
+      <label for="clienteNome">Cliente:</label>
+      <input class="client-name-search" type="text" name="clienteNome" placeholder="Busque pelo nome do cliente">
+      <button class="btn btn-defaulg" onclick="return searchClientByName()">Busca</button>
+    </div>
+
     <div class="table-container">
         <table>
-          <tr>
+          <thead>
             <th>Nome</th>
             <th>Telefone 1</th> 
             <!-- <th>Telefone 2</th> -->
@@ -43,9 +49,10 @@
             <th>Editar</th>
             <th>Remover</th>
             <th>Empréstimo</th>
-          </tr>
+          </thead>
+          <tbody class="clients-table"></tbody>
           <!-------- BLOCO DE REPETIÇÃO  ------->
-          {% for cliente in clientes_result %}
+          <!-- {% for cliente in clientes_result %}
             <tr>
               <td>{{cliente.nome}}</td>
               <td>{{cliente.telefone_1}}</td>
@@ -67,7 +74,7 @@
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#borrowingModalShow" onclick="return getBorrows('{{cliente.codigo_cliente}}')">Ver Empréstimos</button>
               </td>
             </tr>
-          {% endfor %}
+          {% endfor %} -->
         <!------------------------------------>
       </table> 
     </div>

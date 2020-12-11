@@ -35,7 +35,7 @@ th {
   font-weight: 700;
 }
 
-tr:first-child {
+thead tr:first-child {
   background-color: #f04234;
 }
 

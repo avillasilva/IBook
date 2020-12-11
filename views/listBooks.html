@@ -32,11 +32,20 @@
       </nav>
     </header>
 
+    <div class="search-input">
+      <label for="livroNome">Livro:</label>
+      <input class="book-name-search" type="text" name="livroNome" placeholder="Busque pelo nome do livro">
+      <button class="btn btn-defaulg" onclick="return searchBookByName()">Busca</button>
+    </div>
+
     <div class="table-container">
-      <table class="books-table">
-        <th>Nome</th>
-        <th>Editar</th>
-        <th>Remover</th>
+      <table>
+        <thead>
+          <th>Nome</th>
+          <th>Editar</th>
+          <th>Remover</th>
+        </thead>
+        <tbody class="books-table"></tbody>
         <!-- Dynamic Loading -->
       </table>
     </div>

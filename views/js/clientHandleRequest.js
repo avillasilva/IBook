@@ -1,3 +1,56 @@
+console.log('loading customers');
+var table = document.getElementById('clientsTable');
+
+const xhr = new XMLHttpRequest();
+xhr.open('GET', `http://localhost:5000/client`);
+xhr.responseType = 'json';
+xhr.onload = function (e) {
+  if (this.status == 200) {
+    for (var i = 0; i < this.response.length; i++) {
+      cliente = this.response[i];
+      $('.clients-table').append(
+        '<tr>' +
+          '<td>' +
+          cliente.nome +
+          '</td>' +
+          '<td>' +
+          cliente.telefone_1 +
+          '</td>' +
+          '<td>' +
+          cliente.rua +
+          '</td>' +
+          '<td>' +
+          cliente.numero +
+          '</td>' +
+          '<td>' +
+          cliente.bairro +
+          '</td>' +
+          '<td>' +
+          cliente.cidade +
+          '</td>' +
+          '<td>' +
+          cliente.cep +
+          '</td>' +
+          '<td>' +
+          cliente.estado +
+          '</td>' +
+          '<td>' +
+          "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
+          cliente.codigo_cliente +
+          ")'>Editar</button>" +
+          '</td>' +
+          '<td>' +
+          "<button type='button' class='btn btn-danger btn-lg' onclick='return removeMethod(" +
+          cliente.codigo_cliente +
+          ")'>Remover</button>" +
+          '</td>' +
+          '</tr>'
+      );
+    }
+  }
+};
+xhr.send();
+
 var id_client;
 
 function editMethod(id) {
@@ -66,6 +119,62 @@ function removeMethod(id) {
 
   alert('Cliente Removido com sucesso!');
   window.location.reload();
+}
+
+function searchClientByName() {
+  document.querySelector('.clients-table').innerHTML = '';
+  const clientName = document.querySelector('.client-name-search').value.toLowerCase();
+
+  xhr.open('GET', `http://localhost:5000/client`);
+  xhr.responseType = 'json';
+  xhr.onload = function (e) {
+    if (this.status == 200) {
+      for (var i = 0; i < this.response.length; i++) {
+        let cliente = this.response[i];
+        if(cliente.nome.toLowerCase().includes(clientName)) {
+          $('.clients-table').append(
+            '<tr>' +
+              '<td>' +
+              cliente.nome +
+              '</td>' +
+              '<td>' +
+              cliente.telefone_1 +
+              '</td>' +
+              '<td>' +
+              cliente.rua +
+              '</td>' +
+              '<td>' +
+              cliente.numero +
+              '</td>' +
+              '<td>' +
+              cliente.bairro +
+              '</td>' +
+              '<td>' +
+              cliente.cidade +
+              '</td>' +
+              '<td>' +
+              cliente.cep +
+              '</td>' +
+              '<td>' +
+              cliente.estado +
+              '</td>' +
+              '<td>' +
+              "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
+              cliente.codigo_cliente +
+              ")'>Editar</button>" +
+              '</td>' +
+              '<td>' +
+              "<button type='button' class='btn btn-danger btn-lg' onclick='return removeMethod(" +
+              cliente.codigo_cliente +
+              ")'>Remover</button>" +
+              '</td>' +
+              '</tr>'
+          );
+        }
+      }
+    }
+  };
+  xhr.send();
 }
 
 function linkId(id) {

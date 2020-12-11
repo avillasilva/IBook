@@ -57,7 +57,7 @@ export async function getClients(req, res) {
 
     const clientes_enderecos = [];
     const clientes_result = queryResponse.rows;
-    return res.render('views/listClients.html', { clientes_result });
+    return res.json(clientes_result);
   } catch (err) {
     console.log(err.message);
   }
