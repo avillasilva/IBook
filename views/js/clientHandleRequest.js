@@ -73,32 +73,31 @@ function linkId(id) {
 }
 
 function createBorrowing() {
-  var borrow_data_emprestimo = document.getElementById('borrow-data_emprestimo')
-    .value;
-  var borrow_data_devolucao = document.getElementById('borrow-data_devolucao')
-    .value;
-  var borrow_codigos_livros = document.getElementById('borrow-codigos_livros')
-    .value;
-
   var data = {};
-  data.data_emprestimo = borrow_data_emprestimo;
-  data.data_devolucao = borrow_data_devolucao;
-  data.codigos_livros = [borrow_codigos_livros];
+  data.data_emprestimo = document.getElementById(
+    'borrow-data_emprestimo'
+  ).value;
+  data.data_devolucao = document.getElementById('borrow-data_devolucao').value;
+  data.codigos_livros = [
+    document.getElementById('borrow-codigos_livros').value,
+  ];
   var json = JSON.stringify(data);
 
   var xhr = new XMLHttpRequest();
-  xhr.open('PUT', `http://localhost:5000/borrow/${id_client}`);
+  xhr.open('POST', `http://localhost:5000/borrow/${id_client}`, true);
   xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
   xhr.onload = function () {
-    if (xhr.readyState == 4 && xhr.status == '200') {
-      console.log('create borrowing sucess');
+    var response = JSON.parse(xhr.responseText);
+    if (xhr.readyState == 4 && xhr.status == '201') {
+      console.log('borrowing with sucess!');
     } else {
-      console.error('create borrowing error');
+      console.log('borrowing error!');
     }
   };
-  alert('Empréstimo criado com sucesso!');
-
   xhr.send(json);
+
+  alert('Empréstimo Cadastrado com sucesso!');
+  window.location.reload();
 }
 
 function getBorrows(id) {
@@ -106,8 +105,23 @@ function getBorrows(id) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState == XMLHttpRequest.DONE) {
       var result = JSON.parse(xhr.responseText);
-      console.log(result);
-      document.getElementById('borrow-estado').value = result.estado;
+
+      var textP = '';
+      for (var item_id = 0; item_id < result.length; item_id++) {
+        textP +=
+          '<hr style="background-color: black;height: 1px; border: 0;">' +
+          '<strong>Data Empréstimo:</strong> <p>' +
+          result[item_id].data_emprestimo +
+          '</p><strong>Data Devolução:</strong> <p>' +
+          result[item_id].data_devolucao +
+          '</p>';
+        var livros = result[item_id].livros;
+        for (var i = 0; i < livros.length; i++) {
+          textP = textP + 'Título do Livro: ' + livros[i].titulo;
+        }
+      }
+      document.getElementById('info').innerHTML =
+        textP + '<hr style="background-color: black;height: 1px; border: 0;">';
     }
   };
   xhr.open('GET', `http://localhost:5000/borrow/${id}`, true);
