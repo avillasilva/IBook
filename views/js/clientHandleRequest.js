@@ -44,6 +44,14 @@ xhr.onload = function (e) {
           cliente.codigo_cliente +
           ")'>Remover</button>" +
           '</td>' +
+          '<td>' +
+          "<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#borrowingModalCreate' onclick='return linkId(" +
+          cliente.codigo_cliente +
+          ")'>Novo Empréstimo</button>" +
+          "<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#borrowingModalShow' onclick='return getBorrows(" +
+          cliente.codigo_cliente +
+          ")'>Ver Empréstimos</button>" +
+          '</td>' +
           '</tr>'
       );
     }
@@ -123,7 +131,9 @@ function removeMethod(id) {
 
 function searchClientByName() {
   document.querySelector('.clients-table').innerHTML = '';
-  const clientName = document.querySelector('.client-name-search').value.toLowerCase();
+  const clientName = document
+    .querySelector('.client-name-search')
+    .value.toLowerCase();
 
   xhr.open('GET', `http://localhost:5000/client`);
   xhr.responseType = 'json';
@@ -131,7 +141,7 @@ function searchClientByName() {
     if (this.status == 200) {
       for (var i = 0; i < this.response.length; i++) {
         let cliente = this.response[i];
-        if(cliente.nome.toLowerCase().includes(clientName)) {
+        if (cliente.nome.toLowerCase().includes(clientName)) {
           $('.clients-table').append(
             '<tr>' +
               '<td>' +
@@ -167,6 +177,14 @@ function searchClientByName() {
               "<button type='button' class='btn btn-danger btn-lg' onclick='return removeMethod(" +
               cliente.codigo_cliente +
               ")'>Remover</button>" +
+              '</td>' +
+              '<td>' +
+              "<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#borrowingModalCreate' onclick='return linkId(" +
+              cliente.codigo_cliente +
+              ")'>Novo Empréstimo</button>" +
+              "<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#borrowingModalShow' onclick='return getBorrows(" +
+              cliente.codigo_cliente +
+              ")'>Ver Empréstimos</button>" +
               '</td>' +
               '</tr>'
           );
