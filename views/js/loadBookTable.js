@@ -130,3 +130,38 @@ function loadPublishers() {
   };
   xhr.send();
 }
+
+function searchBookByName() {
+  document.querySelector('.books-table').innerHTML = '';
+  const bookName = document.querySelector('.book-name-search').value.toLowerCase();
+
+  xhr.open('GET', `http://localhost:5000/book`);
+  xhr.responseType = 'json';
+  xhr.onload = function (e) {
+    if (this.status == 200) {
+      for (var i = 0; i < this.response.length; i++) {
+        book = this.response[i];
+        if(book.titulo.toLowerCase().includes(bookName)) {
+          $('.books-table').append(
+            '<tr>' +
+              '<td>' +
+              book.titulo +
+              '</td>' +
+              '<td>' +
+              "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
+              book.codigo_livro +
+              ")'>Editar</button>" +
+              '</td>' +
+              '<td>' +
+              "<button type='button' class='btn btn-danger btn-lg' onclick='return removeMethod(" +
+              book.codigo_livro +
+              ")'>Remover</button>" +
+              '</td>' +
+              '</tr>'
+          );
+        }
+      }
+    }
+  };
+  xhr.send();
+}
