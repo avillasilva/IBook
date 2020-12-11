@@ -66,8 +66,8 @@ export async function borrow(req, res) {
         }
 
         const emprestimo = await pool.query(
-            'INSERT INTO emprestimo (codigo_cliente, data_emprestimo, data_devolucao, estado) VALUES ($1, $2, $3, $4) RETURNING *;',
-            [codigo_cliente, data_emprestimo, data_devolucao, 'Não devolvido']
+            'INSERT INTO emprestimo (codigo_cliente, data_emprestimo, data_devolucao, estado, num_renovacoes) VALUES ($1, $2, $3, $4, $5) RETURNING *;',
+            [codigo_cliente, data_emprestimo, data_devolucao, 'Não devolvido', 0]
         );
 
         for (const codigo_livro of codigos_livros) {
@@ -171,7 +171,7 @@ export async function renewBorrow(req, res) {
         if (num_renovacoes == 3) return res.send('Empréstimo atingiu o limite de renovações')
 
         const queryResponse = await pool.query(
-            'UPDATE emprestimo SET num_renovacoes = num_renovacoes + 1 \
+            'UPDATE emprestimo SET num_renovacoes = num_renovacoes + 1, data_devolucao = data_devolucao + 30 \
             WHERE emprestimo.num_emprestimo = $1;', [
             num_emprestimo
         ])
