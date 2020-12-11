@@ -2,9 +2,6 @@
 -- AS OUTRAS PODEM SER EXECUTADAS EM CONJUNTO
 CREATE DATABASE biblioteca;
 
--- POSSÍVEIS ESTADOS DE UM EMPRÉSTIMO --
-CREATE TYPE emprestimo_estado AS ENUM ('Não devolvido', 'Devolvido');
-
 -- QUERIES PARA EXCLUIR AS TABELAS QUANDO NECESSÁRIO --
 DROP TABLE IF EXISTS emprestimo_livro;
 DROP TABLE IF EXISTS emprestimo;
@@ -12,6 +9,9 @@ DROP TABLE IF EXISTS endereco;
 DROP TABLE IF EXISTS cliente;
 DROP TABLE IF EXISTS livro;
 DROP TABLE IF EXISTS editora;
+
+-- POSSÍVEIS ESTADOS DE UM EMPRÉSTIMO --
+CREATE TYPE emprestimo_estado AS ENUM ('Não devolvido', 'Devolvido');
 
 -- QUERIES PARA CRIAÇÃO DAS TABELAS --
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS livro (
     titulo VARCHAR(50) NOT NULL,
     autores VARCHAR(50) NOT NULL,
     ano_publicacao DATE NOT NULL,
-    num_exemplares INTEGER NOT NULL CHECK (num_exemplares > 1),
+    num_exemplares INTEGER NOT NULL CHECK (num_exemplares >= 1),
     isbn INTEGER NOT NULL,
     num_paginas INTEGER NOT NULL,
     genero VARCHAR(50) NOT NULL,
@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS emprestimo (
     num_emprestimo SERIAL,
     codigo_cliente SERIAL,
     estado emprestimo_estado DEFAULT 'Não devolvido',
+    num_renovacoes int4 CHECK (num_renovacoes <= 3),
     data_emprestimo DATE NOT NULL,
     data_devolucao DATE NOT NULL,
     PRIMARY KEY (num_emprestimo),

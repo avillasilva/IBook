@@ -48,6 +48,7 @@
 
             <th>Editar</th>
             <th>Remover</th>
+            <th>Empréstimo</th>
           </thead>
           <tbody class="clients-table"></tbody>
           <!-------- BLOCO DE REPETIÇÃO  ------->
@@ -67,13 +68,18 @@
               <td>
                 <button type="button" class="btn btn-danger btn-lg" onclick="return removeMethod('{{cliente.codigo_cliente}}')">Remover</button>
               </td>
+
+              <td>
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#borrowingModalCreate" onclick="return linkId('{{cliente.codigo_cliente}}')">Novo Empréstimo</button>
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#borrowingModalShow" onclick="return getBorrows('{{cliente.codigo_cliente}}')">Ver Empréstimos</button>
+              </td>
             </tr>
           {% endfor %} -->
         <!------------------------------------>
       </table> 
     </div>
   
-    <!-- Modal -->
+    <!-- Modal Edit -->
     <div class="modal fade" id="myModal" role="dialog">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -129,7 +135,6 @@
         
                 <button id="submit-button" type="button" onclick="return updateMethod()">Editar</button>
 
-                
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" class="close" onclick="return closeReload()">Fechar</button>
@@ -138,6 +143,71 @@
       </div>
     </div>
   </div>
+
+      <!-- Modal Borrowing -->
+      <div class="modal fade" id="borrowingModalShow" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" onclick="return closeReload()">&times;</button>
+              <h4 class="modal-title">Ver Empréstimos</h4>
+            </div>
+            <div class="modal-body">
+              <div class="register-container">
+                  <div class="form-content">
+  
+                    <h3>Empréstimos do Cliente</h3>
+
+                    <label for="borrow-estado">Estado:</label>
+                    <input type="text" name="estado" id="borrow-estado" required />
+
+                  </div>
+          
+                  <!-- <button style="width: 32%;" id="submit-button" type="button" onclick="return createBorrowing()">Cadastrar empréstimo</button> -->
+  
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" class="close" onclick="return closeReload()">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+          <!-- Modal Borrowing -->
+          <div class="modal fade" id="borrowingModalCreate" role="dialog">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" onclick="return closeReload()">&times;</button>
+                  <h4 class="modal-title">Novo Empréstimo</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="register-container">
+                      <div class="form-content">
+      
+                        <h3>Cadastro Empréstimo</h3>
+    
+                        <label for="borrow-data_emprestimo">Data do empréstimo:</label>
+                        <input type="date" name="data_emprestimo" id="borrow-data_emprestimo" required />
+              
+                        <label for="borrow-data_devolucao">Data do Devolução:</label>
+                        <input type="date" name="data_devolucao" id="borrow-data_devolucao" required />
+    
+                        <label for="borrow-codigos_livros">Código do Livro:</label>
+                        <input type="number" name="codigos_livros" id="borrow-codigos_livros" required />
+                      </div>
+              
+                      <button style="width: 32%;" id="submit-button" type="button" onclick="return createBorrowing()">Cadastrar empréstimo</button>
+      
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal" class="close" onclick="return closeReload()">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
   </body>
 
   <script src="js/clientHandleRequest.js"></script>

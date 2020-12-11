@@ -176,3 +176,49 @@ function searchClientByName() {
   };
   xhr.send();
 }
+
+function linkId(id) {
+  id_client = id;
+}
+
+function createBorrowing() {
+  var borrow_data_emprestimo = document.getElementById('borrow-data_emprestimo')
+    .value;
+  var borrow_data_devolucao = document.getElementById('borrow-data_devolucao')
+    .value;
+  var borrow_codigos_livros = document.getElementById('borrow-codigos_livros')
+    .value;
+
+  var data = {};
+  data.data_emprestimo = borrow_data_emprestimo;
+  data.data_devolucao = borrow_data_devolucao;
+  data.codigos_livros = [borrow_codigos_livros];
+  var json = JSON.stringify(data);
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('PUT', `http://localhost:5000/borrow/${id_client}`);
+  xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+  xhr.onload = function () {
+    if (xhr.readyState == 4 && xhr.status == '200') {
+      console.log('create borrowing sucess');
+    } else {
+      console.error('create borrowing error');
+    }
+  };
+  alert('Empréstimo criado com sucesso!');
+
+  xhr.send(json);
+}
+
+function getBorrows(id) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == XMLHttpRequest.DONE) {
+      var result = JSON.parse(xhr.responseText);
+      console.log(result);
+      document.getElementById('borrow-estado').value = result.estado;
+    }
+  };
+  xhr.open('GET', `http://localhost:5000/borrow/${id}`, true);
+  xhr.send();
+}
