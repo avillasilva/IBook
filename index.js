@@ -14,9 +14,6 @@ app.use(express.json());
 app.use(express.static('views'));
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/client', clientRouter);
-app.use('/publisher', publisherRouter);
-
 // Configurando a Template Engine
 const nunjucks = require('nunjucks');
 nunjucks.configure('./', {

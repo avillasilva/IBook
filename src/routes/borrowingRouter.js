@@ -7,5 +7,6 @@ const router = express.Router()
 router.post('/:codigo_cliente', borrowingController.borrow)
 router.get('/:codigo_cliente', borrowingController.clientBorrows)
 router.put('/:num_emprestimo', borrowingController.updateBorrowStatus)
+router.post('/renew/:num_emprestimo', borrowingController.renewBorrow)
 
 export default router
