@@ -234,7 +234,7 @@ function getBorrows(id) {
       var result = JSON.parse(xhr.responseText);
 
       var textP =
-        '<table width="100%"><tbody><thead><th>Data Empréstimo</th><th>Data Devolução</th><th>Título do Livro</th><th>Estado</th>';
+        '<table width="100%"><tbody><thead><th>Data Empréstimo</th><th>Data Devolução</th><th>Título do Livro</th><th>Estado</th><th>Devolver</th>';
 
       for (var item_id = 0; item_id < result.length; item_id++) {
         textP +=
@@ -250,6 +250,11 @@ function getBorrows(id) {
           textP += '<td>' + livros[i].titulo + '</td>';
         }
         textP += '<td>' + result[item_id].estado + '</td>';
+        textP += '<td>' +
+        "<button type='button' class='btn btn-secundary buttons-style' onclick='return returnBorrows(" +
+          result[item_id].num_emprestimo +
+        ")'style='width: 15rem;margin-left: 1rem;'>Devolver</button>" +
+        '</td>';
         textP += '</tr>';
       }
       textP += '</thead></tbody></table>';
@@ -263,6 +268,22 @@ function getBorrows(id) {
     }
   };
   xhr.open('GET', `http://localhost:5000/borrow/${id}`, true);
+  xhr.send();
+}
+
+function returnBorrows(id) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('PUT', `http://localhost:5000/borrow/${id}`);
+  xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+  xhr.onload = function () {
+    if (xhr.readyState == 4 && xhr.status == '200') {
+      console.log('devolução de empréstimo sucess');
+      alert('Empréstimo devolvido!');
+    } else {
+      console.error('devolução de empréstimo error');
+    }
+  };
+
   xhr.send();
 }
 
