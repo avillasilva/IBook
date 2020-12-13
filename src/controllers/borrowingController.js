@@ -50,7 +50,7 @@ export async function borrow(req, res) {
 
         const numLivrosEmprestados = await countBooksBorrowed(codigo_cliente)
 
-        if (numLivrosEmprestados === 5) return res.send('Cliente possui 5 livros não devolvidos')
+        if (numLivrosEmprestados === 5) return res.json( { message: 'Cliente possui 5 livros não devolvidos' })
 
         for (const codigo_livro of codigos_livros) {
             const queryResponse = await pool.query(
@@ -58,9 +58,13 @@ export async function borrow(req, res) {
                 [codigo_livro]
             );
 
+            if(queryResponse.rows[0] == undefined) {
+                return res.json({ message: 'Não existe livro com esse código!' });
+            }
+
             if (queryResponse.rows[0].num_exemplares == 1) {
-                return res.send(
-                    'Há apenas um exemplar do livro ' + queryResponse.rows[0].titulo
+                return res.json(
+                    { message: 'Há apenas um exemplar do livro ' + queryResponse.rows[0].titulo }
                 );
             }
         }

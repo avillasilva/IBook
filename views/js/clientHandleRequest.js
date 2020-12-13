@@ -215,16 +215,16 @@ function createBorrowing() {
   xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
   xhr.onload = function () {
     var response = JSON.parse(xhr.responseText);
-    if (xhr.readyState == 4 && xhr.status == '201') {
+    if (xhr.readyState == 4 && xhr.status == '200') {
       console.log('borrowing with sucess!');
+      alert('Empréstimo realizado com sucesso!');
     } else {
       console.log('borrowing error!');
+      alert(response.message);
     }
   };
   xhr.send(json);
-
-  alert('Empréstimo Cadastrado com sucesso!');
-  window.location.reload();
+  //window.location.reload();
 }
 
 function getBorrows(id) {
