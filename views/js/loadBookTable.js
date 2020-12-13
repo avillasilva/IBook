@@ -17,6 +17,15 @@ xhr.onload = function (e) {
           book.titulo +
           "</td>" +
           "<td>" +
+          book.ano_publicacao.slice(0, 10) +
+          "</td>" +
+          "<td>" +
+          book.num_exemplares +
+          "</td>" +
+          "<td>" +
+          book.num_edicao +
+          "</td>" +
+          "<td>" +
           "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
           book.codigo_livro +
           ")'>Editar</button>" +
@@ -154,6 +163,15 @@ function searchBookByName() {
               "</td>" +
               "<td>" +
               book.titulo +
+              "</td>" +
+              "<td>" +
+              book.ano_publicacao.slice(0, 10) +
+              "</td>" +
+              "<td>" +
+              book.num_exemplares +
+              "</td>" +
+              "<td>" +
+              book.num_edicao +
               "</td>" +
               "<td>" +
               "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +

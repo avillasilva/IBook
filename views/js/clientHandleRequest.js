@@ -89,11 +89,26 @@ function updateMethod() {
   var cpf_client = document.getElementById('client-cpf').value;
   var cnpj_client = document.getElementById('client-cnpj').value;
 
+  var rua_client = document.getElementById('client-rua').value;
+  var numero_client = document.getElementById('client-numero').value;
+  var bairro_client = document.getElementById('client-bairro').value;
+  var cidade_client = document.getElementById('client-cidade').value;
+  var cep_client = document.getElementById('client-cep').value;
+  var estado_client = document.getElementById('client-estado').value; 
+
   var data = {};
   data.nome = name_client;
   data.telefone_1 = phone_client;
   data.cpf = cpf_client;
   data.cnpj = cnpj_client;
+  data.endereco = {
+    rua: rua_client,
+    numero: numero_client,
+    bairro: bairro_client,
+    cidade: cidade_client,
+    cep: cep_client,
+    estado: estado_client
+  }
   var json = JSON.stringify(data);
 
   var xhr = new XMLHttpRequest();
