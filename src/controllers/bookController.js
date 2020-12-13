@@ -73,20 +73,29 @@ export async function updateBook(req, res) {
       genero,
       num_edicao,
     } = req.body;
+
+    var query = ''
+    var values = []
+    if (ano_publicacao === '') {
+    
+      query = 'UPDATE livro SET codigo_editora = $1, titulo = $2, autores = $3, \
+      num_exemplares = $4, isbn = $5, num_paginas = $6, \
+      genero = $7, num_edicao = $8 WHERE livro.codigo_livro = $9;' 
+
+      values = [ codigo_editora, titulo, autores, num_exemplares, isbn, num_paginas, genero, num_edicao,codigo_livro ]
+    
+    } else {
+      
+      query = 'UPDATE livro SET codigo_editora = $1, titulo = $2, autores = $3, ano_publicacao = $4, \
+      num_exemplares = $5, isbn = $6, num_paginas = $7, genero = $8, num_edicao = $9 \
+      WHERE livro.codigo_livro = $10;'
+    
+      values = [ codigo_editora, titulo, autores, ano_publicacao, num_exemplares, isbn, num_paginas, genero, num_edicao,codigo_livro ]
+    }
+
     const livro = await pool.query(
-      'UPDATE livro SET codigo_editora = $1, titulo = $2, autores = $3, ano_publicacao = $4, num_exemplares = $5, isbn = $6, num_paginas = $7, genero = $8, num_edicao = $9 WHERE livro.codigo_livro = $10',
-      [
-        codigo_editora,
-        titulo,
-        autores,
-        ano_publicacao,
-        num_exemplares,
-        isbn,
-        num_paginas,
-        genero,
-        num_edicao,
-        codigo_livro,
-      ]
+      query,
+      values,
     );
 
     res.json(livro.rows[0]);
