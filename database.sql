@@ -124,3 +124,9 @@ INSERT INTO livro (codigo_editora, titulo, autores, ano_publicacao, num_exemplar
 
 INSERT INTO livro (codigo_editora, titulo, autores, ano_publicacao, num_exemplares, isbn, num_paginas, genero, num_edicao)
     VALUES (5, 'Código Limpo: Habilidades Práticas do Agile Software', 'Robert C. Martin', '2009-09-08', 200,  432350884, 440, 'programação, computação', 1);
+
+INSERT INTO livro (codigo_editora, titulo, autores, ano_publicacao, num_exemplares, isbn, num_paginas, genero, num_edicao)
+    VALUES (5, 'Use A Cabeça, Java', ' Kathy Sierra', '2003-01-01', 400,  76081733, 440, 'programação, computação', 1);
+
+INSERT INTO livro (codigo_editora, titulo, autores, ano_publicacao, num_exemplares, isbn, num_paginas, genero, num_edicao)
+    VALUES (5, 'Java Concorrente na Prática', 'Brian Goetz', '2006-05-09', 400,  132702256, 440, 'programação, computação', 1);
