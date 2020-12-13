@@ -2,6 +2,9 @@
 -- AS OUTRAS PODEM SER EXECUTADAS EM CONJUNTO
 CREATE DATABASE biblioteca;
 
+-- POSSÍVEIS ESTADOS DE UM EMPRÉSTIMO --
+CREATE TYPE emprestimo_estado AS ENUM ('Não devolvido', 'Devolvido');
+
 -- QUERIES PARA EXCLUIR AS TABELAS QUANDO NECESSÁRIO --
 DROP TABLE IF EXISTS emprestimo_livro;
 DROP TABLE IF EXISTS emprestimo;
@@ -10,11 +13,7 @@ DROP TABLE IF EXISTS cliente;
 DROP TABLE IF EXISTS livro;
 DROP TABLE IF EXISTS editora;
 
--- POSSÍVEIS ESTADOS DE UM EMPRÉSTIMO --
-CREATE TYPE emprestimo_estado AS ENUM ('Não devolvido', 'Devolvido');
-
 -- QUERIES PARA CRIAÇÃO DAS TABELAS --
-
 CREATE TABLE IF NOT EXISTS cliente (
     codigo_cliente SERIAL,
     nome VARCHAR(50) NOT NULL,
@@ -80,40 +79,48 @@ CREATE TABLE IF NOT EXISTS endereco (
 -- QUERIES PARA INSERÇÃO DE DADOS PARA TESTES --
 
 -- CLIENTE
+INSERT INTO cliente (nome, telefone_1) VALUES ('Emmanuella', '83995468526');
+INSERT INTO cliente (nome, telefone_1) VALUES ('Luyza', '83997458236');
 INSERT INTO cliente (nome, telefone_1) VALUES ('luan', '83996123312');
+INSERT INTO cliente (nome, telefone_1) VALUES ('avilla', '83975684325');
+INSERT INTO cliente (nome, telefone_1) VALUES ('Renan', '83998857626');
 
 -- ENDERECO
 INSERT INTO endereco (codigo_cliente, rua, numero, bairro, cidade, estado, cep)
-    VALUES (1, 'antonio targino', 651, 'cidade universitaria', 'joão pessoa', 'paraiba', '58052250');
+    VALUES (1, 'Rua Antonio Targino', 651, 'Cidade Universitária', 'João Pessoa', 'Paraíba', '58052250');
+
+INSERT INTO endereco (codigo_cliente, rua, numero, bairro, cidade, estado, cep)
+    VALUES (2, 'Rua Norberto de Castro', 852, 'Cidade Universitária', 'João Pessoa', 'Paraíba', '58062321');
+
+INSERT INTO endereco (codigo_cliente, rua, numero, bairro, cidade, estado, cep)
+    VALUES (3, 'Avendida Antônio Lira', 753, 'Valentina', 'João Pessoa', 'Paraíba', '58052250');
+
+INSERT INTO endereco (codigo_cliente, rua, numero, bairro, cidade, estado, cep)
+    VALUES (4, 'Rua Margarida Fonseca Arruda', 789, 'Cabo Branco', 'João Pessoa', 'Paraíba', '58057520');
+
+INSERT INTO endereco (codigo_cliente, rua, numero, bairro, cidade, estado, cep)
+    VALUES (5, 'Rua Norberto de Castro Nogueira', 642, 'cidade universitaria', 'João Pessoa', 'Paraíba', '58052250');
+
 
 -- EDITORA
-INSERT INTO editora (nome) VALUES ('Fu** de vez');
+INSERT INTO editora (nome) VALUES ('Alamo');
+INSERT INTO editora (nome) VALUES ('Ali Babá');
+INSERT INTO editora (nome) VALUES ('5 estrelas');
+INSERT INTO editora (nome) VALUES ('É Realizações');
+INSERT INTO editora (nome) VALUES ('JC Editora');
 
 -- LIVRO
 INSERT INTO livro (codigo_editora, titulo, autores, ano_publicacao, num_exemplares, isbn, num_paginas, genero, num_edicao)
-    VALUES (1, 'Se ferrando em banco de dados I', 'Ávilla, Renan, Naiara, Luan, Emmanuella, Luyza', '2020-12-07', 10,  1234, 100, 'terror/educativo', 1);
+    VALUES (1, 'A Arte das Guerra', 'Sun Tzu', '2020-12-07', 100,  0747963789, 600, 'tratado, obra de referência', 1);
 
+INSERT INTO livro (codigo_editora, titulo, autores, ano_publicacao, num_exemplares, isbn, num_paginas, genero, num_edicao)
+    VALUES (2, 'Harry Potter e a Pedra Filosofal', 'J. K. Rowling', '1997-06-26', 100,  0747532699, 600, 'fantasia', 1);
 
--- INSERT INTO editora (nome) VALUES ('alamo');
--- SELECT * FROM editora;
--- INSERT INTO livro (
--- 	codigo_editora, 
--- 	titulo, 
--- 	autores, 
--- 	ano_publicacao, 
--- 	num_exemplares, 
--- 	isbn, 
--- 	num_paginas, 
--- 	genero, 
--- 	num_edicao) 
--- 	VALUES (
--- 		1,
--- 		'asdfasfd',
--- 		'adfadfasdfa',
--- 		'2020-12-09',
--- 		1,
--- 		8524,
--- 		100,
--- 		'asdfasdf',
--- 		1
--- 	);
+INSERT INTO livro (codigo_editora, titulo, autores, ano_publicacao, num_exemplares, isbn, num_paginas, genero, num_edicao)
+    VALUES (3, 'As Guerra dos Tronos', 'G. R. R. Martin', '1996-08-06', 150, 896370107, 416, 'fantasia', 1);
+
+INSERT INTO livro (codigo_editora, titulo, autores, ano_publicacao, num_exemplares, isbn, num_paginas, genero, num_edicao)
+    VALUES (4, 'Duna', 'Frank Herbert', '1965-08-07', 100,  897590741, 600, 'fantasia, ficção científica', 1);
+
+INSERT INTO livro (codigo_editora, titulo, autores, ano_publicacao, num_exemplares, isbn, num_paginas, genero, num_edicao)
+    VALUES (5, 'Código Limpo: Habilidades Práticas do Agile Software', 'Robert C. Martin', '2009-09-08', 200,  432350884, 440, 'programação, computação', 1);
