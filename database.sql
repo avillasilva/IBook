@@ -79,11 +79,11 @@ CREATE TABLE IF NOT EXISTS endereco (
 -- QUERIES PARA INSERÇÃO DE DADOS PARA TESTES --
 
 -- CLIENTE
-INSERT INTO cliente (nome, telefone_1) VALUES ('Emmanuella', '83995468526');
-INSERT INTO cliente (nome, telefone_1) VALUES ('Luyza', '83997458236');
-INSERT INTO cliente (nome, telefone_1) VALUES ('luan', '83996123312');
-INSERT INTO cliente (nome, telefone_1) VALUES ('avilla', '83975684325');
-INSERT INTO cliente (nome, telefone_1) VALUES ('Renan', '83998857626');
+INSERT INTO cliente (nome, telefone_1, cpf) VALUES ('Emmanuella', '83995468526', '09785245666');
+INSERT INTO cliente (nome, telefone_1, cpf) VALUES ('Luyza', '83997458236', '09785245666');
+INSERT INTO cliente (nome, telefone_1, cpf) VALUES ('luan', '83996123312', '09785245666');
+INSERT INTO cliente (nome, telefone_1, cpf) VALUES ('avilla', '83975684325', '09785245666');
+INSERT INTO cliente (nome, telefone_1, cpf) VALUES ('Renan', '83998857626', '09785245666');
 
 -- ENDERECO
 INSERT INTO endereco (codigo_cliente, rua, numero, bairro, cidade, estado, cep)
@@ -123,7 +123,7 @@ INSERT INTO livro (codigo_editora, titulo, autores, ano_publicacao, num_exemplar
     VALUES (4, 'Duna', 'Frank Herbert', '1965-08-07', 100,  897590741, 600, 'fantasia, ficção científica', 1);
 
 INSERT INTO livro (codigo_editora, titulo, autores, ano_publicacao, num_exemplares, isbn, num_paginas, genero, num_edicao)
-    VALUES (5, 'Código Limpo: Habilidades Práticas do Agile Software', 'Robert C. Martin', '2009-09-08', 200,  432350884, 440, 'programação, computação', 1);
+    VALUES (5, 'Código Limpo', 'Robert C. Martin', '2009-09-08', 200,  432350884, 440, 'programação, computação', 1);
 
 INSERT INTO livro (codigo_editora, titulo, autores, ano_publicacao, num_exemplares, isbn, num_paginas, genero, num_edicao)
     VALUES (5, 'Use A Cabeça, Java', ' Kathy Sierra', '2003-01-01', 400,  76081733, 440, 'programação, computação', 1);
