@@ -86,7 +86,10 @@ export async function borrow(req, res) {
             );
         }
 
-        res.status(200).json(emprestimo.rows[0]);
+        return res.status(200).json(
+            { message: 'Empréstimo realizado com sucesso!' }
+        );
+        // res.status(200).json(emprestimo.rows[0]);
     } catch (err) {
         console.log(err.message);
     }
@@ -172,15 +175,15 @@ export async function renewBorrow(req, res) {
 
         const num_renovacoes = await getNumRenewals(num_emprestimo)
 
-        if (num_renovacoes == 3) return res.send('Empréstimo atingiu o limite de renovações')
+        if (num_renovacoes == 3) return res.json({ message: 'Empréstimo atingiu o limite de renovações' })
 
         const queryResponse = await pool.query(
-            'UPDATE emprestimo SET num_renovacoes = num_renovacoes + 1, data_devolucao = data_devolucao + 30 \
+            'UPDATE emprestimo SET num_renovacoes = num_renovacoes + 1, data_devolucao = data_devolucao + 15 \
             WHERE emprestimo.num_emprestimo = $1;', [
             num_emprestimo
         ])
 
-        return res.send('Emprestimo renovado')
+        return res.json({ message: 'Emprestimo renovado!' })
     } catch (err) {
         return res.send(err.message)
     }
