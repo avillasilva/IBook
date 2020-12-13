@@ -44,7 +44,7 @@ xhr.onload = function (e) {
           cliente.codigo_cliente +
           ")'>Remover</button>" +
           '</td>' +
-          '<td width="100%">' +
+          '<td>' +
           "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalCreate' onclick='return linkId(" +
           cliente.codigo_cliente +
           ")'style='width: 15rem;'>Novo Empréstimo</button>" +
@@ -178,7 +178,7 @@ function searchClientByName() {
               cliente.codigo_cliente +
               ")'>Remover</button>" +
               '</td>' +
-              '<td width="100%">' +
+              '<td>' +
               "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalCreate' onclick='return linkId(" +
               cliente.codigo_cliente +
               ")'style='width: 15rem;margin-left: 1rem;'>Novo Empréstimo</button>" +
@@ -204,6 +204,9 @@ function createBorrowing() {
   data.data_emprestimo = document.getElementById(
     'borrow-data_emprestimo'
   ).value;
+  console.log(document.getElementById(
+    'borrow-data_emprestimo'
+  ).value);
   data.data_devolucao = document.getElementById('borrow-data_devolucao').value;
   data.codigos_livros = [
     document.getElementById('borrow-codigos_livros').value,
@@ -216,15 +219,16 @@ function createBorrowing() {
   xhr.onload = function () {
     var response = JSON.parse(xhr.responseText);
     if (xhr.readyState == 4 && xhr.status == '200') {
-      console.log('borrowing with sucess!');
-      alert('Empréstimo realizado com sucesso!');
-    } else {
-      console.log('borrowing error!');
+      console.log('borrowing connection worked!');
       alert(response.message);
+      window.location.reload();
+    } else {
+      console.log('borrowing connection error!');
+      alert(response.message);
+      window.location.reload();
     }
   };
   xhr.send(json);
-  //window.location.reload();
 }
 
 function getBorrows(id) {
@@ -234,16 +238,16 @@ function getBorrows(id) {
       var result = JSON.parse(xhr.responseText);
 
       var textP =
-        '<table width="100%"><tbody><thead><th>Data Empréstimo</th><th>Data Devolução</th><th>Título do Livro</th><th>Estado</th><th>Devolver</th>';
+        '<table width="100%"><tbody><thead><th>Data Empréstimo</th><th>Data Devolução</th><th>Título do Livro</th><th>Estado</th><th>Devolver</th><th>Renovar</th>';
 
       for (var item_id = 0; item_id < result.length; item_id++) {
         textP +=
           '<tr>' +
           '<td>' +
-          result[item_id].data_emprestimo +
+          result[item_id].data_emprestimo.slice(0, 10) +
           '</td>' +
           '<td>' +
-          result[item_id].data_devolucao +
+          result[item_id].data_devolucao.slice(0, 10) +
           '</td>';
         var livros = result[item_id].livros;
         for (var i = 0; i < livros.length; i++) {
@@ -254,6 +258,11 @@ function getBorrows(id) {
         "<button type='button' class='btn btn-secundary buttons-style' onclick='return returnBorrows(" +
           result[item_id].num_emprestimo +
         ")'style='width: 15rem;margin-left: 1rem;'>Devolver</button>" +
+        '</td>';
+        textP += '<td>' +
+        "<button type='button' class='btn btn-secundary buttons-style' onclick='return renewBorrows(" +
+          result[item_id].num_emprestimo +
+        ")'style='width: 15rem;margin-left: 1rem;'>Renovar</button>" +
         '</td>';
         textP += '</tr>';
       }
@@ -277,10 +286,29 @@ function returnBorrows(id) {
   xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
   xhr.onload = function () {
     if (xhr.readyState == 4 && xhr.status == '200') {
-      console.log('devolução de empréstimo sucess');
+      console.log('devolução de empréstimo success');
       alert('Empréstimo devolvido!');
+      window.location.reload();
     } else {
       console.error('devolução de empréstimo error');
+    }
+  };
+
+  xhr.send();
+}
+
+function renewBorrows(id) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', `http://localhost:5000/borrow/renew/${id}`);
+  xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+  xhr.onload = function () {
+    var response = JSON.parse(xhr.responseText);
+    if (xhr.readyState == 4 && xhr.status == '200') {
+      console.log('renovação de empréstimo success');
+      alert(response.message);
+      window.location.reload();
+    } else {
+      console.error('renovação de empréstimo error');
     }
   };
 
