@@ -261,3 +261,42 @@ form-content select {
 #submit-button:hover {
   background-color: #f04234;
 }
+
+.search-input {
+  padding: 1rem;
+  margin-left: 1rem;
+  color: #333;
+}
+
+.search-input label {
+  font-size: 1.6rem;
+  margin-right: 1rem;
+}
+
+.buttons-style {
+  width: 10rem;
+  height: 5rem;
+  font-weight: 700;
+  border: 1px solid #333;
+}
+
+.buttons-style:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.search-input button i {
+  margin-left: 1rem;
+}
+
+.search-input .client-name-search,
+.search-input .book-name-search {
+  width: 22rem;
+  height: 5rem;
+  font-size: 1.4rem;
+  margin-right: 1rem;
+}
+
+.register-container .form-content {
+  width: 100%;
+}

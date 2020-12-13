@@ -35,18 +35,28 @@ xhr.onload = function (e) {
           cliente.estado +
           '</td>' +
           '<td>' +
-          "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
+          "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
           cliente.codigo_cliente +
           ")'>Editar</button>" +
           '</td>' +
           '<td>' +
-          "<button type='button' class='btn btn-danger btn-lg' onclick='return removeMethod(" +
+          "<button type='button' class='btn btn-secundary buttons-style' onclick='return removeMethod(" +
           cliente.codigo_cliente +
           ")'>Remover</button>" +
           '</td>' +
+<<<<<<< HEAD
           '<td>' +
           '<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#borrowingModalCreate" onclick="return linkId(' + cliente.codigo_cliente + ')">Novo Empréstimo</button>' +
           '<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#borrowingModalShow" onclick="return getBorrows(' + cliente.codigo_cliente + ')">Ver Empréstimos</button>' +
+=======
+          '<td width="100%">' +
+          "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalCreate' onclick='return linkId(" +
+          cliente.codigo_cliente +
+          ")'style='width: 15rem;'>Novo Empréstimo</button>" +
+          "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalShow' onclick='return getBorrows(" +
+          cliente.codigo_cliente +
+          ")'style='width: 15rem;margin-left: 1rem;'>Ver Empréstimos</button>" +
+>>>>>>> 830d29f61a308edfd6215fb872702e5da42d9f96
           '</td>' +
           '</tr>'
       );
@@ -127,7 +137,9 @@ function removeMethod(id) {
 
 function searchClientByName() {
   document.querySelector('.clients-table').innerHTML = '';
-  const clientName = document.querySelector('.client-name-search').value.toLowerCase();
+  const clientName = document
+    .querySelector('.client-name-search')
+    .value.toLowerCase();
 
   xhr.open('GET', `http://localhost:5000/client`);
   xhr.responseType = 'json';
@@ -135,7 +147,7 @@ function searchClientByName() {
     if (this.status == 200) {
       for (var i = 0; i < this.response.length; i++) {
         let cliente = this.response[i];
-        if(cliente.nome.toLowerCase().includes(clientName)) {
+        if (cliente.nome.toLowerCase().includes(clientName)) {
           $('.clients-table').append(
             '<tr>' +
               '<td>' +
@@ -163,14 +175,22 @@ function searchClientByName() {
               cliente.estado +
               '</td>' +
               '<td>' +
-              "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
+              "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
               cliente.codigo_cliente +
               ")'>Editar</button>" +
               '</td>' +
               '<td>' +
-              "<button type='button' class='btn btn-danger btn-lg' onclick='return removeMethod(" +
+              "<button type='button' class='btn btn-secundary buttons-style' onclick='return removeMethod(" +
               cliente.codigo_cliente +
               ")'>Remover</button>" +
+              '</td>' +
+              '<td width="100%">' +
+              "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalCreate' onclick='return linkId(" +
+              cliente.codigo_cliente +
+              ")'style='width: 15rem;margin-left: 1rem;'>Novo Empréstimo</button>" +
+              "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalShow' onclick='return getBorrows(" +
+              cliente.codigo_cliente +
+              ")'style='width: 15rem;margin-left: 1rem;'>Ver Empréstimos</button>" +
               '</td>' +
               '</tr>'
           );
@@ -186,32 +206,31 @@ function linkId(id) {
 }
 
 function createBorrowing() {
-  var borrow_data_emprestimo = document.getElementById('borrow-data_emprestimo')
-    .value;
-  var borrow_data_devolucao = document.getElementById('borrow-data_devolucao')
-    .value;
-  var borrow_codigos_livros = document.getElementById('borrow-codigos_livros')
-    .value;
-
   var data = {};
-  data.data_emprestimo = borrow_data_emprestimo;
-  data.data_devolucao = borrow_data_devolucao;
-  data.codigos_livros = [borrow_codigos_livros];
+  data.data_emprestimo = document.getElementById(
+    'borrow-data_emprestimo'
+  ).value;
+  data.data_devolucao = document.getElementById('borrow-data_devolucao').value;
+  data.codigos_livros = [
+    document.getElementById('borrow-codigos_livros').value,
+  ];
   var json = JSON.stringify(data);
 
   var xhr = new XMLHttpRequest();
-  xhr.open('PUT', `http://localhost:5000/borrow/${id_client}`);
+  xhr.open('POST', `http://localhost:5000/borrow/${id_client}`, true);
   xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
   xhr.onload = function () {
-    if (xhr.readyState == 4 && xhr.status == '200') {
-      console.log('create borrowing sucess');
+    var response = JSON.parse(xhr.responseText);
+    if (xhr.readyState == 4 && xhr.status == '201') {
+      console.log('borrowing with sucess!');
     } else {
-      console.error('create borrowing error');
+      console.log('borrowing error!');
     }
   };
-  alert('Empréstimo criado com sucesso!');
-
   xhr.send(json);
+
+  alert('Empréstimo Cadastrado com sucesso!');
+  window.location.reload();
 }
 
 function getBorrows(id) {
@@ -219,10 +238,63 @@ function getBorrows(id) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState == XMLHttpRequest.DONE) {
       var result = JSON.parse(xhr.responseText);
-      console.log(result);
-      document.getElementById('borrow-estado').value = result.estado;
+
+      var textP =
+        '<table width="100%"><tbody><thead><th>Data Empréstimo</th><th>Data Devolução</th><th>Título do Livro</th><th>Estado</th>';
+
+      for (var item_id = 0; item_id < result.length; item_id++) {
+        textP +=
+          '<tr>' +
+          '<td>' +
+          result[item_id].data_emprestimo +
+          '</td>' +
+          '<td>' +
+          result[item_id].data_devolucao +
+          '</td>';
+        var livros = result[item_id].livros;
+        for (var i = 0; i < livros.length; i++) {
+          textP += '<td>' + livros[i].titulo + '</td>';
+        }
+        textP += '<td>' + result[item_id].estado + '</td>';
+        textP += '</tr></thead></tbody></table>';
+      }
+      document.getElementById('info').innerHTML = textP;
+
+      {
+        /* </thead>
+        <tbody></tbody>
+        </table>'; */
+      }
     }
   };
   xhr.open('GET', `http://localhost:5000/borrow/${id}`, true);
   xhr.send();
 }
+
+// function getBorrows(id) {
+//   var xhr = new XMLHttpRequest();
+//   xhr.onreadystatechange = function () {
+//     if (xhr.readyState == XMLHttpRequest.DONE) {
+//       var result = JSON.parse(xhr.responseText);
+
+//       var textP = '';
+//       for (var item_id = 0; item_id < result.length; item_id++) {
+//         textP +=
+//           '<hr style="background-color: black;height: 1px; border: 0;">' +
+//           '<strong>Data Empréstimo:</strong> <p>' +
+//           result[item_id].data_emprestimo +
+//           '</p><strong>Data Devolução:</strong> <p>' +
+//           result[item_id].data_devolucao +
+//           '</p>';
+//         var livros = result[item_id].livros;
+//         for (var i = 0; i < livros.length; i++) {
+//           textP = textP + 'Título do Livro: ' + livros[i].titulo;
+//         }
+//       }
+//       document.getElementById('info').innerHTML =
+//         textP + '<hr style="background-color: black;height: 1px; border: 0;">';
+//     }
+//   };
+//   xhr.open('GET', `http://localhost:5000/borrow/${id}`, true);
+//   xhr.send();
+// }

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/c668a15bf6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/list-clients.css" />
   </head>
   <body>
@@ -30,7 +31,7 @@
     <div class="search-input">
       <label for="clienteNome">Cliente:</label>
       <input class="client-name-search" type="text" name="clienteNome" placeholder="Busque pelo nome do cliente">
-      <button class="btn btn-defaulg" onclick="return searchClientByName()">Busca</button>
+      <button class="btn btn-secundary buttons-style" onclick="return searchClientByName()">Buscar <i class="fas fa-search"></i></button>
     </div>
 
     <div class="table-container">
@@ -51,31 +52,6 @@
             <th>Empréstimo</th>
           </thead>
           <tbody class="clients-table"></tbody>
-          <!-------- BLOCO DE REPETIÇÃO  ------->
-          <!-- {% for cliente in clientes_result %}
-            <tr>
-              <td>{{cliente.nome}}</td>
-              <td>{{cliente.telefone_1}}</td>
-              <td>{{cliente.rua}}</td>
-              <td>{{cliente.numero}}</td>
-              <td>{{cliente.bairro}}</td>
-              <td>{{cliente.cidade}}</td>
-              <td>{{cliente.cep}}</td>
-              <td>{{cliente.estado}}</td>
-              <td>
-                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal" onclick="return editMethod('{{cliente.codigo_cliente}}')">Editar</button>
-              </td>
-              <td>
-                <button type="button" class="btn btn-danger btn-lg" onclick="return removeMethod('{{cliente.codigo_cliente}}')">Remover</button>
-              </td>
-
-              <td>
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#borrowingModalCreate" onclick="return linkId('{{cliente.codigo_cliente}}')">Novo Empréstimo</button>
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#borrowingModalShow" onclick="return getBorrows('{{cliente.codigo_cliente}}')">Ver Empréstimos</button>
-              </td>
-            </tr>
-          {% endfor %} -->
-        <!------------------------------------>
       </table> 
     </div>
   
@@ -158,8 +134,7 @@
   
                     <h3>Empréstimos do Cliente</h3>
 
-                    <label for="borrow-estado">Estado:</label>
-                    <input type="text" name="estado" id="borrow-estado" required />
+                    <p id="info"></p>
 
                   </div>
           
