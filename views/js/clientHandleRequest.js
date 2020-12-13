@@ -44,6 +44,10 @@ xhr.onload = function (e) {
           cliente.codigo_cliente +
           ")'>Remover</button>" +
           '</td>' +
+          '<td>' +
+          '<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#borrowingModalCreate" onclick="return linkId(' + cliente.codigo_cliente + ')">Novo Empréstimo</button>' +
+          '<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#borrowingModalShow" onclick="return getBorrows(' + cliente.codigo_cliente + ')">Ver Empréstimos</button>' +
+          '</td>' +
           '</tr>'
       );
     }

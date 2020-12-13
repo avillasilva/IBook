@@ -34,13 +34,21 @@
 
     <div class="search-input">
       <label for="livroNome">Livro:</label>
-      <input class="book-name-search" type="text" name="livroNome" placeholder="Busque pelo nome do livro">
-      <button class="btn btn-defaulg" onclick="return searchBookByName()">Busca</button>
+      <input
+        class="book-name-search"
+        type="text"
+        name="livroNome"
+        placeholder="Busque pelo nome do livro"
+      />
+      <button class="btn btn-defaulg" onclick="return searchBookByName()">
+        Busca
+      </button>
     </div>
 
     <div class="table-container">
       <table>
         <thead>
+          <th>ID</th>
           <th>Nome</th>
           <th>Editar</th>
           <th>Remover</th>
