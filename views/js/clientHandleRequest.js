@@ -44,11 +44,6 @@ xhr.onload = function (e) {
           cliente.codigo_cliente +
           ")'>Remover</button>" +
           '</td>' +
-<<<<<<< HEAD
-          '<td>' +
-          '<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#borrowingModalCreate" onclick="return linkId(' + cliente.codigo_cliente + ')">Novo Empréstimo</button>' +
-          '<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#borrowingModalShow" onclick="return getBorrows(' + cliente.codigo_cliente + ')">Ver Empréstimos</button>' +
-=======
           '<td width="100%">' +
           "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalCreate' onclick='return linkId(" +
           cliente.codigo_cliente +
@@ -56,7 +51,6 @@ xhr.onload = function (e) {
           "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalShow' onclick='return getBorrows(" +
           cliente.codigo_cliente +
           ")'style='width: 15rem;margin-left: 1rem;'>Ver Empréstimos</button>" +
->>>>>>> 830d29f61a308edfd6215fb872702e5da42d9f96
           '</td>' +
           '</tr>'
       );
@@ -256,8 +250,9 @@ function getBorrows(id) {
           textP += '<td>' + livros[i].titulo + '</td>';
         }
         textP += '<td>' + result[item_id].estado + '</td>';
-        textP += '</tr></thead></tbody></table>';
+        textP += '</tr>';
       }
+      textP += '</thead></tbody></table>';
       document.getElementById('info').innerHTML = textP;
 
       {
