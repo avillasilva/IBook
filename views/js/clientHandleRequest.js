@@ -10,49 +10,49 @@ xhr.onload = function (e) {
       cliente = this.response[i];
       $('.clients-table').append(
         '<tr>' +
-          '<td>' +
-          cliente.nome +
-          '</td>' +
-          '<td>' +
-          cliente.telefone_1 +
-          '</td>' +
-          '<td>' +
-          cliente.rua +
-          '</td>' +
-          '<td>' +
-          cliente.numero +
-          '</td>' +
-          '<td>' +
-          cliente.bairro +
-          '</td>' +
-          '<td>' +
-          cliente.cidade +
-          '</td>' +
-          '<td>' +
-          cliente.cep +
-          '</td>' +
-          '<td>' +
-          cliente.estado +
-          '</td>' +
-          '<td>' +
-          "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
-          cliente.codigo_cliente +
-          ")'>Editar</button>" +
-          '</td>' +
-          '<td>' +
-          "<button type='button' class='btn btn-secundary buttons-style' onclick='return removeMethod(" +
-          cliente.codigo_cliente +
-          ")'>Remover</button>" +
-          '</td>' +
-          '<td>' +
-          "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalCreate' onclick='return linkId(" +
-          cliente.codigo_cliente +
-          ")'style='width: 15rem;'>Novo Empréstimo</button>" +
-          "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalShow' onclick='return getBorrows(" +
-          cliente.codigo_cliente +
-          ")'style='width: 15rem;margin-left: 1rem;'>Ver Empréstimos</button>" +
-          '</td>' +
-          '</tr>'
+        '<td>' +
+        cliente.nome +
+        '</td>' +
+        '<td>' +
+        cliente.telefone_1 +
+        '</td>' +
+        '<td>' +
+        cliente.rua +
+        '</td>' +
+        '<td>' +
+        cliente.numero +
+        '</td>' +
+        '<td>' +
+        cliente.bairro +
+        '</td>' +
+        '<td>' +
+        cliente.cidade +
+        '</td>' +
+        '<td>' +
+        cliente.cep +
+        '</td>' +
+        '<td>' +
+        cliente.estado +
+        '</td>' +
+        '<td>' +
+        "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
+        cliente.codigo_cliente +
+        ")'>Editar</button>" +
+        '</td>' +
+        '<td>' +
+        "<button type='button' class='btn btn-secundary buttons-style' onclick='return removeMethod(" +
+        cliente.codigo_cliente +
+        ")'>Remover</button>" +
+        '</td>' +
+        '<td width="100%">' +
+        "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalCreate' onclick='return linkId(" +
+        cliente.codigo_cliente +
+        ")'style='width: 15rem;'>Novo Empréstimo</button>" +
+        "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalShow' onclick='return getBorrows(" +
+        cliente.codigo_cliente +
+        ")'style='width: 15rem;margin-left: 1rem;'>Ver Empréstimos</button>" +
+        '</td>' +
+        '</tr>'
       );
     }
   }
@@ -94,7 +94,7 @@ function updateMethod() {
   var bairro_client = document.getElementById('client-bairro').value;
   var cidade_client = document.getElementById('client-cidade').value;
   var cep_client = document.getElementById('client-cep').value;
-  var estado_client = document.getElementById('client-estado').value; 
+  var estado_client = document.getElementById('client-estado').value;
 
   var data = {};
   data.nome = name_client;
@@ -159,49 +159,49 @@ function searchClientByName() {
         if (cliente.nome.toLowerCase().includes(clientName)) {
           $('.clients-table').append(
             '<tr>' +
-              '<td>' +
-              cliente.nome +
-              '</td>' +
-              '<td>' +
-              cliente.telefone_1 +
-              '</td>' +
-              '<td>' +
-              cliente.rua +
-              '</td>' +
-              '<td>' +
-              cliente.numero +
-              '</td>' +
-              '<td>' +
-              cliente.bairro +
-              '</td>' +
-              '<td>' +
-              cliente.cidade +
-              '</td>' +
-              '<td>' +
-              cliente.cep +
-              '</td>' +
-              '<td>' +
-              cliente.estado +
-              '</td>' +
-              '<td>' +
-              "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
-              cliente.codigo_cliente +
-              ")'>Editar</button>" +
-              '</td>' +
-              '<td>' +
-              "<button type='button' class='btn btn-secundary buttons-style' onclick='return removeMethod(" +
-              cliente.codigo_cliente +
-              ")'>Remover</button>" +
-              '</td>' +
-              '<td>' +
-              "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalCreate' onclick='return linkId(" +
-              cliente.codigo_cliente +
-              ")'style='width: 15rem;margin-left: 1rem;'>Novo Empréstimo</button>" +
-              "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalShow' onclick='return getBorrows(" +
-              cliente.codigo_cliente +
-              ")'style='width: 15rem;margin-left: 1rem;'>Ver Empréstimos</button>" +
-              '</td>' +
-              '</tr>'
+            '<td>' +
+            cliente.nome +
+            '</td>' +
+            '<td>' +
+            cliente.telefone_1 +
+            '</td>' +
+            '<td>' +
+            cliente.rua +
+            '</td>' +
+            '<td>' +
+            cliente.numero +
+            '</td>' +
+            '<td>' +
+            cliente.bairro +
+            '</td>' +
+            '<td>' +
+            cliente.cidade +
+            '</td>' +
+            '<td>' +
+            cliente.cep +
+            '</td>' +
+            '<td>' +
+            cliente.estado +
+            '</td>' +
+            '<td>' +
+            "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
+            cliente.codigo_cliente +
+            ")'>Editar</button>" +
+            '</td>' +
+            '<td>' +
+            "<button type='button' class='btn btn-secundary buttons-style' onclick='return removeMethod(" +
+            cliente.codigo_cliente +
+            ")'>Remover</button>" +
+            '</td>' +
+            '<td>' +
+            "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalCreate' onclick='return linkId(" +
+            cliente.codigo_cliente +
+            ")'style='width: 15rem;margin-left: 1rem;'>Novo Empréstimo</button>" +
+            "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#borrowingModalShow' onclick='return getBorrows(" +
+            cliente.codigo_cliente +
+            ")'style='width: 15rem;margin-left: 1rem;'>Ver Empréstimos</button>" +
+            '</td>' +
+            '</tr>'
           );
         }
       }
@@ -270,15 +270,15 @@ function getBorrows(id) {
         }
         textP += '<td>' + result[item_id].estado + '</td>';
         textP += '<td>' +
-        "<button type='button' class='btn btn-secundary buttons-style' onclick='return returnBorrows(" +
+          "<button type='button' class='btn btn-secundary buttons-style' onclick='return returnBorrows(" +
           result[item_id].num_emprestimo +
-        ")'style='width: 15rem;margin-left: 1rem;'>Devolver</button>" +
-        '</td>';
+          ")'style='width: 15rem;margin-left: 1rem;'>Devolver</button>" +
+          '</td>';
         textP += '<td>' +
-        "<button type='button' class='btn btn-secundary buttons-style' onclick='return renewBorrows(" +
+          "<button type='button' class='btn btn-secundary buttons-style' onclick='return renewBorrows(" +
           result[item_id].num_emprestimo +
-        ")'style='width: 15rem;margin-left: 1rem;'>Renovar</button>" +
-        '</td>';
+          ")'style='width: 15rem;margin-left: 1rem;'>Renovar</button>" +
+          '</td>';
         textP += '</tr>';
       }
       textP += '</thead></tbody></table>';

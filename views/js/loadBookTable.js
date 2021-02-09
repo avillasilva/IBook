@@ -10,32 +10,32 @@ xhr.onload = function (e) {
       book = this.response[i];
       $(".books-table").append(
         "<tr>" +
-          "<td>" +
-          book.codigo_livro +
-          "</td>" +
-          "<td>" +
-          book.titulo +
-          "</td>" +
-          "<td>" +
-          book.ano_publicacao.slice(0, 10) +
-          "</td>" +
-          "<td>" +
-          book.num_exemplares +
-          "</td>" +
-          "<td>" +
-          book.num_edicao +
-          "</td>" +
-          "<td>" +
-          "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
-          book.codigo_livro +
-          ")'>Editar</button>" +
-          "</td>" +
-          "<td>" +
-          "<button type='button' class='btn btn-danger btn-lg' onclick='return removeMethod(" +
-          book.codigo_livro +
-          ")'>Remover</button>" +
-          "</td>" +
-          "</tr>"
+        "<td>" +
+        book.codigo_livro +
+        "</td>" +
+        "<td>" +
+        book.titulo +
+        "</td>" +
+        "<td>" +
+        book.ano_publicacao.slice(0, 10) +
+        "</td>" +
+        "<td>" +
+        book.num_exemplares +
+        "</td>" +
+        "<td>" +
+        book.num_edicao +
+        "</td>" +
+        "<td>" +
+        "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
+        book.codigo_livro +
+        ")'>Editar</button>" +
+        "</td>" +
+        "<td>" +
+        "<button type='button' class='btn btn-secundary buttons-style' onclick='return removeMethod(" +
+        book.codigo_livro +
+        ")'>Remover</button>" +
+        "</td>" +
+        "</tr>"
       );
     }
   }
@@ -158,32 +158,32 @@ function searchBookByName() {
         if (book.titulo.toLowerCase().includes(bookName)) {
           $(".books-table").append(
             "<tr>" +
-              "<td>" +
-              book.codigo_livro +
-              "</td>" +
-              "<td>" +
-              book.titulo +
-              "</td>" +
-              "<td>" +
-              book.ano_publicacao.slice(0, 10) +
-              "</td>" +
-              "<td>" +
-              book.num_exemplares +
-              "</td>" +
-              "<td>" +
-              book.num_edicao +
-              "</td>" +
-              "<td>" +
-              "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
-              book.codigo_livro +
-              ")'>Editar</button>" +
-              "</td>" +
-              "<td>" +
-              "<button type='button' class='btn btn-danger btn-lg' onclick='return removeMethod(" +
-              book.codigo_livro +
-              ")'>Remover</button>" +
-              "</td>" +
-              "</tr>"
+            "<td>" +
+            book.codigo_livro +
+            "</td>" +
+            "<td>" +
+            book.titulo +
+            "</td>" +
+            "<td>" +
+            book.ano_publicacao.slice(0, 10) +
+            "</td>" +
+            "<td>" +
+            book.num_exemplares +
+            "</td>" +
+            "<td>" +
+            book.num_edicao +
+            "</td>" +
+            "<td>" +
+            "<button type='button' class='btn btn-secundary buttons-style' data-toggle='modal' data-target='#myModal' onclick='return editMethod(" +
+            book.codigo_livro +
+            ")'>Editar</button>" +
+            "</td>" +
+            "<td>" +
+            "<button type='button' class='btn btn-secundary buttons-style' onclick='return removeMethod(" +
+            book.codigo_livro +
+            ")'>Remover</button>" +
+            "</td>" +
+            "</tr>"
           );
         }
       }
